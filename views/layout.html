@@ -8,11 +8,20 @@
     </head>
 
     <body>
-        {{>nav}}
+        <div class="site-wrapper">
 
-        {{{body}}}
+            <div class="site-id" role="banner">
+                <div class="site-logo">
+                    <a href="/">Forsiden</a>
+                </div>
+                {{>nav}}
+            </div>
 
-        <p><a href="/">Forsiden</a></p>
+            <div class="site-content">
+                {{{body}}}
+            </div>
+
+        </div>
     </body>
 </html>
 

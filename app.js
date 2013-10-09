@@ -25,6 +25,7 @@ app.get("/:cat", function(req, res) {
     var categories = imageEngine.getCategories();
     res.render("images", {
         images:result,
+        currentCategory: req.params.cat,
         nav: categories
     });
 });
@@ -33,9 +34,20 @@ app.get("/image/:id", function(req, res) {
     var image = imageEngine.getImage(req.params.id);
     var categories = imageEngine.getCategories();
     res.render("image", {
-        title: image.title,
-        id: image.id,
+        image: image,
         nav: categories
+    });
+});
+
+app.get("/upload", function(req, res) {
+    var newJson =  {
+            "id": 9,
+            "category": "Mozard",
+            "imageurl": "img_9.jpg",
+            "title": "Barok"
+    };
+    var result = imageEngine.setImage(newJson);
+    res.render("images", {
     });
 });
 

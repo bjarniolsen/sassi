@@ -1,11 +1,11 @@
-<!--<ul>
-{{#each nav}}
-    <li><a href="/{{category}}">{{category}}</a></li>
-{{/each}}
-</ul>-->
-<h1>images</h1>
+<h1>{{currentCategory}}</h1>
 <ul>
 {{#each images}}
-<li><a href="/image/{{id}}">Titel: {{title}} (Kateori: {{category}})</a></li>
+    <li>
+        <a href="/image/{{id}}">
+            <img src="/images/thumb/{{imageurl}}" alt="{{title}}"/>
+        </a>
+        <p>Titel: {{title}} (Kateori: {{category}})</p>
+    </li>
 {{/each}}
 </ul>

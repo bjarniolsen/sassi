@@ -1,44 +1,27 @@
-var images = [
-    {
-        "id": 1,
-        "category": "malerier",
-        "title": "Solsikker"
-    },
-    {
-        "id": 2,
-        "category": "malerier",
-        "title": "Roser"
-    },
-    {
-        "id": 3,
-        "category": "bodypaint",
-        "title": "Mur"
-    },
-    {
-        "id": 4,
-        "category": "malerier",
-        "title": "Robotter og dyr"
-    },
-    {
-        "id": 5,
-        "category": "malerier",
-        "title": "Vindhekse"
-    } ,
-    {
-        "id": 6,
-        "category": "Julekort",
-        "title": "Vindhekse"
+var fs = require('fs');
+var file = __dirname + '/assets/json/images.json';
+var images = [];
+  
+fs.readFile(file, 'utf8', function (err, data) {
+    if (err) {
+        console.log('Error: ' + err);
+        return;
     }
-];
+    images = JSON.parse(data);
+});
+
+exports.setImage = function(json) {
+    console.log(json);
+    images.push(json);
+}
 
 exports.getCategories = function(req, res) {
    var arr = {};
-
    for ( var i=0; i < images.length; i++ ) {
        arr[images[i]['category']] = images[i];
    }
 
-   result = new Array();
+   var result = [];
    for ( key in arr ) {
        result.push(arr[key]);
    }
