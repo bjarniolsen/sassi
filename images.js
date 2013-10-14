@@ -11,26 +11,37 @@ fs.readFile(file, 'utf8', function (err, data) {
 });
 
 exports.setImage = function(json) {
-    console.log(json);
-    images.push(json);
+    var result = [];
+    fs.readFile(file, 'utf8', function (err, data) {
+        if (err) {
+            console.log('Error: ' + err);
+            return;
+        }
+        images = JSON.parse(data);
+        images = JSON.stringify(images);
+        result = images.push(json);
+        console.log(result);
+    });
+
+    return result;
 }
 
 exports.getCategories = function(req, res) {
-   var arr = {};
-   for ( var i=0; i < images.length; i++ ) {
-       arr[images[i]['category']] = images[i];
-   }
+    var arr = {};
+    for ( var i=0; i < images.length; i++ ) {
+        arr[images[i]['category']] = images[i];
+    }
 
-   var result = [];
-   for ( key in arr ) {
-       result.push(arr[key]);
-   }
-   return result;
+    var result = [];
+    for ( key in arr ) {
+        result.push(arr[key]);
+    }
+    return result;
 
-   /*res.partial("nav", {
-       layout: false,
-       nav: result
-   });*/
+    /*res.partial("nav", {
+    layout: false,
+    nav: result
+    });*/
 }
 
 exports.getImagesByCategory = function(cat) {

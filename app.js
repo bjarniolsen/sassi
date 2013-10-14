@@ -20,13 +20,16 @@ app.get("/", function(req, res) {
     });
 });
 
-app.get("/:cat", function(req, res) {
-    var result = imageEngine.getImagesByCategory(req.params.cat);
-    var categories = imageEngine.getCategories();
-    res.render("images", {
-        images:result,
-        currentCategory: req.params.cat,
-        nav: categories
+app.get("/upload", function(req, res) {
+    var newJson =  {
+            "id": 9,
+            "category": "Mozard",
+            "imageurl": "img_9.jpg",
+            "title": "Barok"
+    };
+    var result = imageEngine.setImage(newJson);
+    //console.log("set image: " + result);
+    res.render("upload", {
     });
 });
 
@@ -39,23 +42,21 @@ app.get("/image/:id", function(req, res) {
     });
 });
 
-app.get("/upload", function(req, res) {
-    var newJson =  {
-            "id": 9,
-            "category": "Mozard",
-            "imageurl": "img_9.jpg",
-            "title": "Barok"
-    };
-    var result = imageEngine.setImage(newJson);
-    res.render("images", {
-    });
-});
-
 app.get("/api/:id", function(req, res) {
     res.send({
         name: "Bjarni Olsen",
         age: 200,
         id: req.params.id
+    });
+});
+
+app.get("/:cat", function(req, res) {
+    var result = imageEngine.getImagesByCategory(req.params.cat);
+    var categories = imageEngine.getCategories();
+    res.render("images", {
+        images:result,
+        currentCategory: req.params.cat,
+        nav: categories
     });
 });
 
