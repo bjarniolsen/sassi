@@ -4,5 +4,17 @@
         "category": "bodypaint",
         "imageurl": "bjarni.jpg",
         "title": "Bjarni olsen"
+    },
+    {
+        "id": 12,
+        "category": "malerier",
+        "imageurl": "bjarni.jpg",
+        "title": "Bjarni Olsen"
+    },
+    {
+        "id": 13,
+        "category": "bodypaint",
+        "imageurl": "motorhead_1024x1024.jpg",
+        "title": "Motorhead"
     }
 ]

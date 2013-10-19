@@ -1,10 +1,19 @@
 var fs = require('fs');
 var file = __dirname + '/assets/json/images.json';
 var images = [];
+
+fs.readFile(file, 'utf8', function (err, data) {
+	if (err) {
+		console.log('Error: ' + err);
+		return;
+	}
+	images = JSON.parse(data);
+});
   
 exports.addImage = function(req, res) {
+	var newId = images[images.length-1].id + 1;
 	var newJson =  {
-			"id": 11,
+			"id": newId,
 			"category": req.body.category,
 			"imageurl": req.files.image.name,
 			"title": req.body.title
@@ -34,6 +43,7 @@ exports.addImage = function(req, res) {
 }
 
 exports.getLastId = function() {
+	return images[images.length-1].id;
 }
 
 exports.getCategories = function(req, res) {
