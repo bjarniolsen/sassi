@@ -1,4 +1,5 @@
 var express = require("express");
+var fs = require('fs');
 var app = express();
 
 var hbs = require("hbs");
@@ -20,16 +21,13 @@ app.get("/", function(req, res) {
     });
 });
 
-app.get("/upload", function(req, res) {
-    var newJson =  {
-            "id": 9,
-            "category": "Mozard",
-            "imageurl": "img_9.jpg",
-            "title": "Barok"
-    };
-    var result = imageEngine.setImage(newJson);
-    //console.log("set image: " + result);
-    res.render("upload", {
+app.get("/admin/new", function(req, res) {
+    res.render("new");
+});
+
+app.post("/admin/upload", function(req, res) {
+    var result = imageEngine.addImage(req, res);
+    res.render("images", {
     });
 });
 

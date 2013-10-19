@@ -1,0 +1,10 @@
+<h1>Upload image</form>
+<form action="/admin/upload" method="post" enctype="multipart/form-data">
+	<input type="file" name="image" />
+	<input type="text" name="title"/>
+	<select name="category">
+		<option value="malerier">Malerier</option>
+		<option value="bodypaint">Bodypaint</option>
+	</select>
+	<button type="submit">Upload</button>
+</form>

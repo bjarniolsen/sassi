@@ -1,50 +1,8 @@
 [
     {
-        "id": 1,
-        "category": "malerier",
-        "imageurl": "img_1.jpg",
-        "title": "Solsikker"
-    },
-    {
-        "id": 2,
-        "category": "malerier",
-        "imageurl": "img_2.jpg",
-        "title": "Roser"
-    },
-    {
-        "id": 3,
+        "id": 11,
         "category": "bodypaint",
-        "imageurl": "img_3.jpg",
-        "title": "Mur"
-    },
-    {
-        "id": 4,
-        "category": "bodypaint",
-        "imageurl": "img_4.jpg",
-        "title": "Robotter og dyr"
-    },
-    {
-        "id": 5,
-        "category": "malerier",
-        "imageurl": "img_5.jpg",
-        "title": "Vindhekse"
-    } ,
-    {
-        "id": 6,
-        "category": "Julekort",
-        "imageurl": "img_6.jpg",
-        "title": "Vindhekse"
-    },
-    {
-        "id": 7,
-        "category": "Julekort",
-        "imageurl": "img_7.jpg",
-        "title": "Vindhekse"
-    },
-    {
-        "id": 8,
-        "category": "Julekort",
-        "imageurl": "img_8.jpg",
-        "title": "Vindhekse"
+        "imageurl": "bjarni.jpg",
+        "title": "Bjarni olsen"
     }
 ]
