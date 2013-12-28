@@ -39,7 +39,7 @@ app.get("/", function(req, res) {
 app.get("/admin", function(req, res) {
     var result = imageEngine.getAllImages();
     var categories = imageEngine.getCategories();
-    res.render("new", {
+    res.render("admin/index", {
     	images: result,
     	categories: categories,
         spansize: spansize(result.length),

@@ -1,26 +1,2 @@
 [
-    {
-        "id": 2,
-        "category": "malerier",
-        "imageurl": "steampunk-the-mad-scientist-mike-savad.jpg",
-        "title": "punk",
-        "description": "et billede af noget",
-        "featured": "on"
-    },
-    {
-        "id": 1,
-        "category": "heavy",
-        "imageurl": "watain-13years.jpg",
-        "title": "watain",
-        "description": "De spiller hurtigt",
-        "featured": "on"
-    },
-    {
-        "id": 0,
-        "category": "malerier",
-        "imageurl": "wolfman.jpg",
-        "title": "Wolfman",
-        "description": "Han er sej",
-        "featured": "on"
-    }
 ]
