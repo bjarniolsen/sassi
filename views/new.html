@@ -1,10 +1,68 @@
-<h1>Upload image</form>
-<form action="/admin/upload" method="post" enctype="multipart/form-data">
-	<input type="file" name="image" />
-	<input type="text" name="title"/>
-	<select name="category">
-		<option value="malerier">Malerier</option>
-		<option value="bodypaint">Bodypaint</option>
-	</select>
+<form action="/admin/upload" method="post" enctype="multipart/form-data" class="section boxed">
+	<h1>Upload image</h1>
+
+	<label>
+		<span>Vælg et billede</span>
+		<input type="file" name="image" />
+	</label>
+	<label>
+		<span>Titel</span>
+		<input type="text" name="title"/>
+	</label>
+	<label>
+		<span>Beskrivelse</span>
+		<textarea name="description"></textarea>
+	</label>
+	<label>
+		<span>Vælg kategori</span>
+		<select name="category">
+			<option value="">---</option>
+			{{#each categories}}
+			<option value="{{category}}">{{category}}</option>
+			{{/each}}
+		</select>
+	</label>
+	<label>
+		<span>...eller tilføj en ny</span>
+		<input type="text" name="newcategory" />
+	</label>
+	<label>
+		<span>Vises på forsiden</span>
+		<input type="checkbox" name="featured" />
+	</label>
 	<button type="submit">Upload</button>
 </form>
+
+<div class="section boxed admin">
+	{{#if images}}
+	<h2>Alle billeder</h2>
+	<ul class="combine-layout">
+		{{#each images}}
+    	<li class="span-{{../spansize}}">
+			<div class="item image-2{{#if muted}} is-muted{{/if}}{{#if featured}} is-featured{{/if}}">
+        		<a href="/admin/image/{{id}}" class="image-wrap">
+            		<img src="/images/thumb/medium/{{imageurl}}" alt="{{title}}"/>
+        		</a>
+        		<p class="item-title">{{title}} <span>(Kateori: {{category}})</span></p>
+        		<p class="item-description">{{description}}</p>
+        		<div class="utilities">
+        			<a href="/admin/delete/{{id}}" class="utility delete">Slet</a>
+        			{{#if muted}}
+        				<a href="/admin/unmute/{{id}}" class="utility unmute">Vis</a>
+        			{{else}}
+        				<a href="/admin/mute/{{id}}" class="utility mute">Skjul</a>
+        			{{/if}}
+        			{{#if featured}}
+        				<a href="/admin/unfeature/{{id}}" class="utility unfeature">Fjern fra forsiden</a>
+        			{{else}}
+        				<a href="/admin/feature/{{id}}" class="utility feature">Vis på forsiden</a>
+        			{{/if}}
+        		</div>
+        	</div>
+    	</li>
+		{{/each}}
+	</ul>
+	{{else}}
+	<h2>Ingen billeder</h2>
+	{{/if}}
+<div>

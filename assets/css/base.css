@@ -1,14 +1,472 @@
+
+/* RESET */
 body {
     font-family: sans-serif;
     font-size: 13px;
     line-height: 1.2;
     color: #333;
+    background-color: #eae8e3 ;
 }
-
+* {
+	margin: 0;
+	padding: 0;
+}
 a {
     color: #000;
     text-transform: uppercase;
 }
 a:hover {
     color: #a00;
+}
+ul, ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* combine-layout: https://gist.github.com/4008294 */
+.combine-layout {
+    height: 100%;
+    text-align: right;
+    /* align inline-blocks right */
+    font-size: 0;
+    /* make sure whitespace between inline-blocks doesn't ruin the layout */
+    /* handle margin between blocks */
+    margin: 0 -10px;
+}
+.combine-layout:after {
+    /* clear those floats */
+    display: table;
+    clear: both;
+    content: " ";
+}
+.combine-layout > * {
+    float: left;
+    /* float blocks by default */
+    text-align: left;
+    /* reset text-align right */
+    font-size: 13px;
+    /* reset font-size to something sane */
+    min-height: 10px;
+}
+.combine-layout > .break {
+    clear: left;
+    /* make sure floated blocks start new row with .break */
+}
+.combine-layout > .break,
+.combine-layout > .break ~ * {
+    margin-top: 20px;
+}
+.combine-layout,
+.section {
+    margin-top: 20px;
+}
+[class*="span-"] > .section:first-child {
+	margin-top: 0;
+}
+
+/* SPANS */
+.span-12,
+.span-10,
+.span-9,
+.span-8,
+.span-7,
+.span-6,
+.span-5,
+.span-4,
+.span-3,
+.span-2 {
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.span-12 {
+    width: 100%;
+}
+.span-11 {
+    width: 91.66666666666666%;
+}
+.span-10 {
+    width: 83.33333333333334%;
+}
+.span-9 {
+    width: 75%;
+}
+.span-8 {
+    width: 66.66666666666666%;
+}
+.span-7 {
+    width: 58.333333333333336%;
+}
+.span-6 {
+    width: 50%;
+}
+.span-5 {
+    width: 41.66666666666667%;
+}
+.span-4 {
+    width: 33.33333333333337%;
+}
+.span-3 {
+    width: 25%;
+}
+.span-2 {
+    width: 16.666666666666664%;
+}
+
+/* SECTIONS */
+.boxed,
+.boxed-band,
+.boxed-band:before,
+.boxed-band:after,
+.boxed-image {
+    background-color: #fff;
+    border-bottom: 0 solid transparent;
+    position: relative;
+}
+.boxed,
+.boxed-image {
+    padding: 20px;
+}
+.boxed::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	background-color: transparent;
+	-webkit-box-shadow: 0px 0px 1px #666;
+	-moz-box-shadow: 0px 0px 1px #666;
+	-ms-box-shadow: 0px 0px 1px #666;
+	box-shadow: 0px 0px 1px #666;
+	border-collapse: separate;
+}
+.boxed > .combine-layout,
+.boxed-image > .combine-layout {
+    margin-top: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.boxed > .combine-layout + .combine-layout,
+.boxed-image > .combine-layout + .combine-layout {
+	margin-top: 20px;
+}
+.boxed-band {
+    position: relative;
+}
+.boxed-band:before,
+.boxed-band:after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2000px;
+    height: 100%;
+    display: block;
+}
+.boxed-band:before {
+    right: 100%;
+}
+.boxed-band:after {
+    left: 100%;
+}
+.boxed .boxed {
+	padding: 10px;
+	background-color: #f5f5f5;
+}
+.boxed .boxed:after {
+	clear: both;
+	display: table;
+	content: " ";
+}
+
+.item {
+	padding: 10px 10px 40px;
+	zoom: 1;
+	position: relative;
+	-webkit-box-shadow: 0px 0px 1px #999;
+	-moz-box-shadow: 0px 0px 1px #999;
+	-ms-box-shadow: 0px 0px 1px #999;
+	box-shadow: 0px 0px 1px #999;
+}
+.item:hover {
+	-webkit-box-shadow: 0px 0px 5px #666;
+	-moz-box-shadow: 0px 0px 5px #666;
+	-ms-box-shadow: 0px 0px 5px #666;
+	box-shadow: 0px 0px 5px #666;
+}
+.item:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.item > .item-title {
+	font-size: 16px;
+	font-weight: 700;
+}
+.item > .item-title > span {
+	display: block;
+	font-size: 13px;
+}
+.item > .item-title + * {
+	margin-top: 5px;
+}
+.item a {
+	display: block;
+}
+
+/* IMAGES */
+.image-wrap {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  zoom: 1;
+  *zoom: 1;
+  margin-bottom: 5px;
+}
+.image-wrap:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.image-wrap:before,
+.image-wrap:after {
+  content: " ";
+  display: table;
+}
+.image-wrap:after {
+  clear: both;
+}
+.image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* IMAGE MODES */
+[class*="image-"] .image-wrap {
+  float: left;
+  padding-right: 10px;
+}
+.span-6 .image-2 .image-wrap {
+  width: 50%;
+}
+.span-6 .image-2 .image-wrap ~ * {
+  margin-left: 50%;
+  padding-left: 0px;
+}
+.span-4 .image-2 .image-wrap {
+  width: 50%;
+}
+.span-4 .image-2 .image-wrap ~ * {
+  margin-left: 50%;
+  padding-left: 0px;
+}
+.span-4 .image-1 .image-wrap {
+  width: 26.666666666666668%;
+  padding-right: 0px;
+}
+.span-4 .image-1 .image-wrap ~ * {
+  margin-left: 26.666666666666668%;
+  padding-left: 0px;
+}
+.span-3 .image-2 .image-wrap {
+  width: 33.33333333333333%;
+}
+.span-3 .image-2 .image-wrap ~ * {
+  margin-left: 33.33333333333333%;
+  padding-left: 0px;
+}
+.span-3 .image-1 .image-wrap {
+  width: 36.36363636363637%;
+  padding-right: 0px;
+}
+.span-3 .image-1 .image-wrap ~ * {
+  margin-left: 36.36363636363637%;
+  padding-left: 0px;
+}
+
+/* FORMS */
+form {
+	background-color: #f2f2f2;
+}
+form > h1 {
+	margin: 0 auto 10px;
+}
+form > label {
+	display: block;
+	position: relative;
+}
+form > label + label {
+	margin-top: 10px;
+}
+form > label > span {
+	display: block;
+	font-size: 16px;
+	font-weight: 700;
+}
+form label input[type="radio"] + span,
+form > label input[type="radio"] + span,
+form label input[type="checkbox"] + span,
+form > label input[type="checkbox"] + span {
+	position: relative;
+	display: block;
+}
+form label input[type="text"],
+form > label input[type="text"],
+form label input[type="password"],
+form > label input[type="password"],
+form label input[type="email"],
+form > label input[type="email"],
+form label input[type="tel"],
+form > label input[type="tel"],
+form label input[type="number"],
+form > label input[type="number"],
+form label textarea,
+form > label textarea,
+form label select,
+form > label select {
+	width: 50%;
+	height: 40px;
+	border: 1px solid #B8B8B8;
+	color: #000;
+	padding: 11px 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+form label input[type="text"],
+form > label input[type="text"],
+form label input[type="password"],
+form > label input[type="password"],
+form label input[type="email"],
+form > label input[type="email"],
+form label input[type="tel"],
+form > label input[type="tel"],
+form label input[type="number"],
+form > label input[type="number"],
+form label textarea,
+form > label textarea {
+	font-family: monospace;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fcfcfc), to(#fff));
+	background-image: -webkit-linear-gradient(top, #fcfcfc, #fff); 
+	background-image:    -moz-linear-gradient(top, #fcfcfc, #fff);
+	background-image:     -ms-linear-gradient(top, #fcfcfc, #fff);
+	background-image:      -o-linear-gradient(top, #fcfcfc, #fff); 
+	-moz-box-shadow:    inset 0 0 10px #d9d9d9;
+	-webkit-box-shadow: inset 0 0 10px #d9d9d9;
+	box-shadow:         inset 0 0 10px #d9d9d9;
+}
+form label input[type="file"],
+form > label input[type="file"] {
+	border: none;
+	background-color: #f2f2f2;
+}
+form label textarea,
+form > label textarea {
+	height: 158px;
+}
+form label select,
+form > label select {
+	width: 30%;
+	height: 30px;
+	padding: 5px 5px 5px 10px;
+	font-size: 16px;
+	/*-webkit-appearance: none;
+	border-radius: 0;
+	position: relative;
+	z-index: 2;
+	background: #FFF none;
+	-webkit-box-shadow: 0 0 0 transparent;
+	-khtml-box-shadow: 0 0 0 transparent;
+	-moz-box-shadow: 0 0 0 transparent;
+	-ms-box-shadow: 0 0 0 transparent;
+	-o-box-shadow: 0 0 0 transparent;
+	box-shadow: 0 0 0 transparent;*/
+}
+form label select option,
+form > label select option {
+	margin-bottom: 5px;
+	font-size: 16px;
+}
+.checkbox-group,
+.radio-group {
+	margin-top: 20px;
+}
+.checkbox-group label,
+.radio-group label {
+	margin-top: 10px;
+}
+input,
+textarea {
+	padding: 5px;
+	border-radius: 3px;
+	border: 1px solid #e5e5e5;
+}
+form > button {
+	margin-top: 10px;
+	padding: 15px 30px;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+/* STATES */
+.is-featured {
+	background-color: #f5f5f5;
+}
+.is-muted {
+	color: #aaa;
+	background-color: #fff;
+	-webkit-box-shadow: 0px 0px 1px #ccc;
+	-moz-box-shadow: 0px 0px 1px #ccc;
+	-ms-box-shadow: 0px 0px 1px #ccc;
+	box-shadow: 0px 0px 1px #ccc;
+}
+.is-muted img {
+	opacity: 0.3;
+}
+
+/* UTILITIES */
+.utilities {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	margin: 0 !important;
+	padding: 0;
+}
+.utility {
+	float: left;
+	margin: 0;
+	padding: 0;
+    font-family: monospace;
+    font-size: 11px;
+	color: #999;
+	text-decoration: none;
+}
+.utility:hover {
+	color: #333;
+}
+.utility + .utility {
+	margin-left: 5px;
+}
+.utility + .utility:before {
+	content: "·";
+	margin-right: 5px;
 }

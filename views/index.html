@@ -1,6 +1,15 @@
-<h1>{{title}}</h1>
-<ul>
-{{#each images}}
-    <li><a href="/image/{{id}}">{{title}}</a></li>
-{{/each}}
-</ul>
+<div class="section boxed">
+	<h1>{{title}}</h1>
+	<ul class="combine-layout">
+	{{#each images}}
+    	<li class="span-{{../spansize}}">
+			<div class="item image-2">
+        		<a href="/image/{{id}}" class="image-wrap">
+            		<img src="/images/thumb/large/{{imageurl}}" alt="{{title}}"/>
+        		</a>
+        		<p>Titel: {{title}} (Kateori: {{category}})</p>
+        	</div>
+		</li>
+	{{/each}}
+	</ul>
+</div>

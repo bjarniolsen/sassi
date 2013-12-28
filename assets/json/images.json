@@ -1,20 +1,26 @@
 [
     {
-        "id": 11,
-        "category": "bodypaint",
-        "imageurl": "bjarni.jpg",
-        "title": "Bjarni olsen"
-    },
-    {
-        "id": 12,
+        "id": 2,
         "category": "malerier",
-        "imageurl": "bjarni.jpg",
-        "title": "Bjarni Olsen"
+        "imageurl": "steampunk-the-mad-scientist-mike-savad.jpg",
+        "title": "punk",
+        "description": "et billede af noget",
+        "featured": "on"
     },
     {
-        "id": 13,
-        "category": "bodypaint",
-        "imageurl": "motorhead_1024x1024.jpg",
-        "title": "Motorhead"
+        "id": 1,
+        "category": "heavy",
+        "imageurl": "watain-13years.jpg",
+        "title": "watain",
+        "description": "De spiller hurtigt",
+        "featured": "on"
+    },
+    {
+        "id": 0,
+        "category": "malerier",
+        "imageurl": "wolfman.jpg",
+        "title": "Wolfman",
+        "description": "Han er sej",
+        "featured": "on"
     }
 ]

@@ -1,0 +1,40 @@
+<form action="/admin/edit/{{image.id}}" method="post" enctype="multipart/form-data" class="section boxed">
+	<h1>Rediger billedet "{{image.title}}"</h1>
+	<label>
+		<span>Titel</span>
+		<input type="text" name="title" value="{{image.title}}"/>
+	</label>
+	<label>
+		<span>Beskrivelse</span>
+		<textarea name="description">{{image.description}}</textarea>
+	</label>
+	<label>
+		<span>Vælg kategori (nuværende: {{image.category}})</span>
+		<select name="category">
+			<option value="">---</option>
+			{{#each categories}}
+				<option value="{{category}}">{{category}}</option>
+			{{/each}}
+		</select>
+	</label>
+	<label>
+		<span>...eller tilføj en ny</span>
+		<input type="text" name="newcategory" />
+	</label>
+	<label>
+		<span>Vises på forsiden</span>
+		{{#if image.featured}}
+			<input type="checkbox" name="featured" checked="checked" />
+		{{else}}
+			<input type="checkbox" name="featured" />
+		{{/if}}
+	</label>
+	<button type="submit">Gem</button>
+</form>
+<div class="section boxed">
+	<h2>Alle størrelser af billedet</h2>
+	<img src="/images/orig/{{image.imageurl}}" alt="{{image.title}}"/>
+	<img src="/images/large/{{image.imageurl}}" alt="{{image.title}}"/>
+	<img src="/images/thumb/large/{{image.imageurl}}" alt="{{image.title}}"/>
+	<img src="/images/thumb/medium/{{image.imageurl}}" alt="{{image.title}}"/>
+</div>

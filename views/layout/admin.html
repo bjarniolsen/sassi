@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>{{title}}</title>
+
+        <link href="/css/base.css" rel="stylesheet"/>
+    </head>
+
+    <body>
+        <div class="site-wrapper admin">
+
+            <div class="site-id" role="banner">
+                <div class="site-logo">
+                    <a href="/admin">Forsiden</a>
+                </div>
+                {{>nav}}
+            </div>
+
+            <div class="site-content">
+                {{{body}}}
+            </div>
+
+        </div>
+    </body>
+</html>
+
