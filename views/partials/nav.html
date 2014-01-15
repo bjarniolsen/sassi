@@ -1,5 +1,7 @@
-<ul>
-{{#each nav}}
-    <li><a href="/{{category}}">{{category}}</a></li>
-{{/each}}
-</ul>
+{{#if nav}}
+	<ul>
+	{{#each nav}}
+    	<li><a href="/{{category}}">{{category}}</a></li>
+	{{/each}}
+	</ul>
+{{/if}}

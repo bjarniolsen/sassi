@@ -1,37 +1,50 @@
-<form action="/admin/upload" method="post" enctype="multipart/form-data" class="section boxed">
-	<h1>Upload image</h1>
-
-	<label>
-		<span>Vælg et billede</span>
-		<input type="file" name="image" />
-	</label>
-	<label>
-		<span>Titel</span>
-		<input type="text" name="title"/>
-	</label>
-	<label>
-		<span>Beskrivelse</span>
-		<textarea name="description"></textarea>
-	</label>
-	<label>
-		<span>Vælg kategori</span>
-		<select name="category">
-			<option value="">---</option>
-			{{#each categories}}
-			<option value="{{category}}">{{category}}</option>
-			{{/each}}
-		</select>
-	</label>
-	<label>
-		<span>...eller tilføj en ny</span>
-		<input type="text" name="newcategory" />
-	</label>
-	<label>
-		<span>Vises på forsiden</span>
-		<input type="checkbox" name="featured" />
-	</label>
-	<button type="submit">Upload</button>
-</form>
+<div class="combine-layout">
+	<div class="span-6">
+		<form action="/admin/upload" method="post" enctype="multipart/form-data" class="section boxed">
+			<h1>Upload et billede</h1>
+			<label>
+				<span>Vælg et billede</span>
+				<input type="file" name="image"/>
+			</label>
+			<label>
+				<span>Titel</span>
+				<input type="text" name="title"/>
+			</label>
+			<label>
+				<span>Beskrivelse</span>
+				<textarea name="description"></textarea>
+			</label>
+			<label>
+				<span>Vælg kategori</span>
+				<select name="category">
+					<option value="">---</option>
+					{{#each categories}}
+					<option value="{{category}}">{{category}}</option>
+					{{/each}}
+				</select>
+			</label>
+			<label>
+				<span>...eller tilføj en ny</span>
+				<input type="text" name="newcategory"/>
+			</label>
+			<label>
+				<span>Vises på forsiden</span>
+				<input type="checkbox" name="featured"/>
+			</label>
+			<button type="submit">Upload</button>
+		</form>
+	</div>
+	<div class="span-6">
+		<form action="/admin/uploads" method="post" enctype="multipart/form-data" class="section boxed">
+			<h1>Upload flere billeder på én gang</h1>
+			<label>
+				<span>Vælg billeder ved at markere dem</span>
+				<input type="file" name="images" multiple="multiple"/>
+			</label>
+			<button type="submit">Upload</button>
+		</form>
+	</div>
+</div>
 
 <div class="section boxed admin">
 	{{#if images}}
@@ -64,5 +77,6 @@
 	</ul>
 	{{else}}
 	<h2>Ingen billeder</h2>
+	<button class="hest">hest</button>
 	{{/if}}
-<div>
+</div>

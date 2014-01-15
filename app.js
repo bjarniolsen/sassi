@@ -52,6 +52,11 @@ app.post("/admin/upload", function(req, res) {
 	res.redirect("/admin");
 });
 
+app.post("/admin/uploads", function(req, res) {
+    var result = imageEngine.addImages(req, res);
+	res.redirect("/admin");
+});
+
 app.get("/admin/mute/:id", function(req, res) {
 	var result = imageEngine.muteImage(req.params.id);
 	res.redirect("/admin");
