@@ -41,6 +41,19 @@
 				<span>Vælg billeder ved at markere dem</span>
 				<input type="file" name="images" multiple="multiple"/>
 			</label>
+			<label>
+				<span>Vælg evt. en kategori til alle billederne</span>
+				<select name="category">
+					<option value="">---</option>
+					{{#each categories}}
+					<option value="{{category}}">{{category}}</option>
+					{{/each}}
+				</select>
+			</label>
+			<label>
+				<span>...eller tilføj en ny</span>
+				<input type="text" name="newcategory"/>
+			</label>
 			<button type="submit">Upload</button>
 		</form>
 	</div>
