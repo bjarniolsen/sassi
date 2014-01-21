@@ -104,19 +104,23 @@ exports.addImages = function(req, res) {
     	for(var image in req.files.images) {
 			//console.log(req.files.images[image].path);
 			if (req.files.images.hasOwnProperty(image)) {
+				//.match(/\.(jpg|jpeg|png)$/i)
+				var extension = req.files.images[image].name.split('.').pop();
+				var newName = "sassi_bischoff_" + Math.random().toString(36).substr(2,6) + "." + extension;
+				console.log(newName);
 				var newJson =  {
 						"id": newId,
 						"category": category,
-						"imageurl": req.files.images[image].name,
+						"imageurl": newName,
 						"title": "**temp",
 				};
 				// get the temporary location of the file
 				var tmp_path = req.files.images[image].path;
 				// set where the file should actually exists - in this case it is in the "images" directory
-				var target_path = __dirname + '/assets/images/orig/' + req.files.images[image].name;
-				var image_large = __dirname + '/assets/images/large/' + req.files.images[image].name;
-				var thumb_large = __dirname + '/assets/images/thumb/large/' + req.files.images[image].name;
-				var thumb_medium = __dirname + '/assets/images/thumb/medium/' + req.files.images[image].name;
+				var target_path = __dirname + '/assets/images/orig/' + newName;
+				var image_large = __dirname + '/assets/images/large/' + newName;
+				var thumb_large = __dirname + '/assets/images/thumb/large/' + newName;
+				var thumb_medium = __dirname + '/assets/images/thumb/medium/' + newName;
 
 				//console.log(tmp_path, target_path, thumb_large, thumb_medium);
 
@@ -150,7 +154,7 @@ exports.addImages = function(req, res) {
 					]
 				}, function(err, stdout, stderr) {
 					if (err) throw err;
-					console.log("resized image to fit within 200x200px", thumb_l);
+					//console.log("resized image to fit within 200x200px", thumb_l);
 
 					im.resize({
 						srcPath: target,
@@ -163,11 +167,11 @@ exports.addImages = function(req, res) {
 						]
 					}, function(err, stdout, stderr) {
 						if (err) throw err;
-						console.log("resized image to fit within 80x80px", thumb_m);
+						//console.log("resized image to fit within 80x80px", thumb_m);
 
 						im.identify(target, function(err, features) {
 							if (err) throw err;
-							console.log(features.width, features.height);
+							//console.log(features.width, features.height);
 							if(features.width > 700) {
 								im.resize({
 									srcPath: target,
@@ -175,19 +179,19 @@ exports.addImages = function(req, res) {
 									width: 700,
 								}, function(err, stdout, stderr) {
 									if (err) throw err;
-									console.log("resized image to width 700px");
+									//console.log("resized image to width 700px");
 								});
 							} else {
 								ncp(target, image_l, function(err) {
 									if (err) throw err;
-									console.log("original image copied to /large dir"); 
+									//console.log("original image copied to /large dir"); 
 								});
 							}
 						});
 						// delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
 						fs.unlink(tmp_path, function() {
 							if (err) throw err;
-							console.log('File uploaded to: ' + target_path + ' - ?? bytes');
+							//console.log('File uploaded to: ' + target_path + ' - ?? bytes');
 						});
 					});
 
