@@ -1,10 +1,17 @@
 {
     "name": "sassi",
     "description": "sassis website",
-    "version": "0.0.1",
+    "version": "0.1.1",
+    "author": "Bjarni Olsen",
     "private": "true",
     "dependencies": {
         "express": "3.x",
+        "imagemagick": "0.1.x",
+        "ncp": "0.5.x",
         "hbs": "*"
+    },
+    "engines": {
+    	"node": "0.10.x"
     }
+
 }
