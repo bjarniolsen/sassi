@@ -43,7 +43,7 @@ app.get('/login', function (req, res) {
 
 app.post("/login", function (req, res) {
 	var post = req.body;
-	if (post.user == "bjarni" && post.password == "ttboy666") {
+	if ( (post.user == "bjarni" && post.password == "ttboy666") || (post.user == "sassibis" && post.password == "0707mathilde") ) {
 		req.session.user_id = 666;
 		res.redirect("/admin");
 	} else {
