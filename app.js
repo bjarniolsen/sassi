@@ -9,7 +9,19 @@ app.engine("html", hbs.__express);
 app.use(express.bodyParser());
 app.use(express.static("assets"));
 
+app.use(express.cookieParser());
+app.use(express.session({secret: '1234567890QWERTY'}));
+
 hbs.registerPartials(__dirname + '/views/partials');
+
+function checkAuth(req, res, next) {
+	if (!req.session.user_id) {
+		res.redirect('/login');
+		//res.send('You are not authorized to view this page');
+	} else {
+		next();
+	}
+}
 
 var spansize = function(len) {
     var size;
@@ -25,6 +37,25 @@ var spansize = function(len) {
     return size;
 };
 
+app.get('/login', function (req, res) {
+    res.render("login");
+});
+
+app.post("/login", function (req, res) {
+	var post = req.body;
+	if (post.user == "bjarni" && post.password == "ttboy666") {
+		req.session.user_id = 666;
+		res.redirect("/admin");
+	} else {
+		res.send("Bad user/pass");
+	}
+});
+
+app.get('/logout', function (req, res) {
+	delete req.session.user_id;
+	res.redirect('/login');
+});
+
 app.get("/", function(req, res) {
     var categories = imageEngine.getCategories();
     var result = imageEngine.getFeaturedImages();
@@ -36,7 +67,7 @@ app.get("/", function(req, res) {
     });
 });
 
-app.get("/admin", function(req, res) {
+app.get("/admin", checkAuth, function(req, res) {
     var result = imageEngine.getAllImages();
     var categories = imageEngine.getCategories();
     res.render("admin/index", {
