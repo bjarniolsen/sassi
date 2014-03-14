@@ -14,5 +14,13 @@
         "title": "Ikon 2",
         "description": "",
         "featured": "on"
+    },
+    {
+        "id": 2,
+        "category": "malerier",
+        "imageurl": "9842824445_22473f6d26.jpg",
+        "title": "Ikon 3",
+        "description": "",
+        "featured": "on"
     }
 ]
