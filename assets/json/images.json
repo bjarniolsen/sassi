@@ -22,5 +22,12 @@
         "title": "Ikon 3",
         "description": "",
         "featured": "on"
+    },
+    {
+        "id": 3,
+        "category": "malerier",
+        "imageurl": "9713377829_aabe8929bc.jpg",
+        "title": "slanger",
+        "description": ""
     }
 ]
