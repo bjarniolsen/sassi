@@ -1,2 +1,34 @@
 [
+    {
+        "id": 0,
+        "category": "malerier",
+        "imageurl": "9843090955_a36e52e365.jpg",
+        "title": "Et maleri",
+        "description": "Der er så smukt",
+        "featured": "on"
+    },
+    {
+        "id": 1,
+        "category": "bodypaint",
+        "imageurl": "9843071594_8449f6f836.jpg",
+        "title": "hest",
+        "description": "",
+        "featured": "on"
+    },
+    {
+        "id": 2,
+        "category": "abe",
+        "imageurl": "9842824445_22473f6d26.jpg",
+        "title": "hesti",
+        "description": "",
+        "featured": "on"
+    },
+    {
+        "id": 3,
+        "category": "bodypaint",
+        "imageurl": "9713377829_aabe8929bc.jpg",
+        "title": "hkjh",
+        "description": "",
+        "featured": "on"
+    }
 ]

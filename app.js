@@ -138,6 +138,26 @@ app.get("/image/:id", function(req, res) {
     });
 });
 
+app.get("/api/get_all_images", function(req, res) {
+    var images = imageEngine.getAllImages();
+    res.send(images);
+});
+
+app.get("/api/get_image/:id", function(req, res) {
+    var image = imageEngine.getImage(req.params.id);
+    res.send(image);
+});
+
+app.get("/api/get_images_by_category/:cat", function(req, res) {
+    var images = imageEngine.getImagesByCategory(req.params.cat);
+    res.send(images);
+});
+
+app.get("/api/get_categories", function(req, res) {
+    var categories = imageEngine.getCategories();
+    res.send(categories);
+});
+
 app.get("/api/:id", function(req, res) {
     res.send({
         name: "Bjarni Olsen",
