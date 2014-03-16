@@ -529,6 +529,15 @@ form > button {
 /* - small screen */
 @media all and (max-width: 48em) { /* 768px */
     .state-indicator:before { content: 'small'; }
+	.site-id li {
+		margin-left: 0;
+	}
+	.site-id li + li {
+		margin-left: 20px;
+	}
+	.site-id li > a {
+		padding: 2px;
+	}
 }
 
 /* - tiny screen */
