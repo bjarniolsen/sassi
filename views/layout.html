@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8"/>
         <title>{{title}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
 		<!-- Styles -->
+        <link href="/css/normalize.css" rel="stylesheet"/>
         <link href="/css/base.css" rel="stylesheet"/>
 		<!-- Scripts -->
         <script src="/js/lib/min.js/src/$.js"></script>
@@ -13,9 +16,9 @@
     <body>
         <div class="site-wrapper">
 
-            <div class="site-id" role="banner">
+            <div class="site-id section boxed-band" role="banner">
                 <div class="site-logo">
-                    <a href="/">Forsiden</a>
+                    <a href="/"><img src="/graphics/sassi-logo.gif"/></a>
                 </div>
                 {{>nav}}
             </div>

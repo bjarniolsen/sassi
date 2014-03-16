@@ -28,6 +28,127 @@
         "category": "malerier",
         "imageurl": "9713377829_aabe8929bc.jpg",
         "title": "slanger",
-        "description": ""
+        "description": "",
+        "featured": "on"
+    },
+    {
+        "id": 4,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_8fw719.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 5,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_tqtwi5.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 6,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_fwugpz.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 7,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_1kfnp8.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 8,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_qw95ov.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 9,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_7rvkm7.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 10,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_7tlwnj.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 11,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_kxqtdy.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 12,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_fz6eu3.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 13,
+        "category": "malerier",
+        "imageurl": "sassi_bischoff_0kq774.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 14,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_ite29n.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 15,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_e5fr84.jpeg",
+        "title": "**temp"
+    },
+    {
+        "id": 16,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_4aout2.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 17,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_xhrwdj.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 18,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_ntdn6d.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 19,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_9eqmbi.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 20,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_hn3177.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 21,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_4vr27u.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 22,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_u2b2z2.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": 23,
+        "category": "bodypaint",
+        "imageurl": "sassi_bischoff_mbt6qy.jpg",
+        "title": "**temp"
     }
 ]

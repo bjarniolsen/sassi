@@ -1,21 +1,25 @@
-
 /* RESET */
 body {
     font-family: sans-serif;
     font-size: 13px;
     line-height: 1.2;
     color: #333;
-    background-color: #eae8e3 ;
+    background-color: #fff;
 }
 * {
-	margin: 0;
-	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
 }
-a {
+a,
+a:visited {
     color: #000;
-    text-transform: uppercase;
+    text-decoration: none;
 }
-a:hover {
+a:hover,
+a:active {
     color: #a00;
 }
 ul, ol {
@@ -127,6 +131,9 @@ ul, ol {
     border-bottom: 0 solid transparent;
     position: relative;
 }
+.boxed-band {
+	overflow: hidden;
+}
 .boxed,
 .boxed-image {
     padding: 20px;
@@ -185,52 +192,9 @@ ul, ol {
 	content: " ";
 }
 
-.item {
-	padding: 10px 10px 40px;
-	zoom: 1;
-	position: relative;
-	-webkit-box-shadow: 0px 0px 1px #999;
-	-moz-box-shadow: 0px 0px 1px #999;
-	-ms-box-shadow: 0px 0px 1px #999;
-	box-shadow: 0px 0px 1px #999;
-}
-.item:hover {
-	-webkit-box-shadow: 0px 0px 5px #666;
-	-moz-box-shadow: 0px 0px 5px #666;
-	-ms-box-shadow: 0px 0px 5px #666;
-	box-shadow: 0px 0px 5px #666;
-}
-.item:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
-}
-.item > .item-title {
-	font-size: 16px;
-	font-weight: 700;
-}
-.item > .item-title > span {
-	display: block;
-	font-size: 13px;
-}
-.item > .item-title + * {
-	margin-top: 5px;
-}
-.item a {
-	display: block;
-}
-
 /* IMAGES */
 .image-wrap {
   width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
   zoom: 1;
   *zoom: 1;
   margin-bottom: 5px;
@@ -469,4 +433,173 @@ form > button {
 .utility + .utility:before {
 	content: "·";
 	margin-right: 5px;
+}
+/*
+ * Experimental Device State Detection with CSS Media Queries and JavaScript
+ * See this from David Walsh:
+ * http://davidwalsh.name/device-state-detection-css-media-queries-javascript
+ */
+.state-indicator {
+	position: absolute;
+	top: -999em;
+	left: -999em;
+}
+.state-indicator:before { 
+	display: none;
+}
+
+/* SITE GRID */
+.site-wrapper {}
+/* - header + logo */
+.site-id {
+	margin-top: 0;
+	padding: 1em 0;
+	text-align: center;
+}
+.site-id.boxed-band,
+.site-id.boxed-band:before,
+.site-id.boxed-band:after {
+	background-color: #f2f6fa;
+}
+.site-logo {
+	display: inline-block;
+}
+.site-logo > a {
+	display: block;
+	width: 100px;
+}
+.site-logo > a img {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+}
+/* - navigation */
+.site-id > ul {
+	display: inline-block;
+	overflow: hidden;
+	margin-bottom: 10px;
+	font-size: 0;
+}
+.site-id li {
+	display: inline-block;
+	margin-left: 20px;
+}
+.site-id li > a {
+	display: block;
+	font-size: 16px;
+    text-transform: uppercase;
+}
+.site-id li.active > a {
+	border-bottom: 3px solid #a00;
+    color: #a00;
+}
+/* - content */
+/* - wide screen */
+.state-indicator:before { content: 'wide'; }
+.site-id,
+.site-content {
+	margin: 0 auto;
+	width: 100em; /* 1600px */
+}
+.images li {
+	width: 200px;
+}
+
+/* - large screen */
+@media all and (max-width: 99em) { /* 1584px */
+    .state-indicator:before { content: 'large'; }
+	.site-id,
+	.site-content {
+		width: 80em; /* 1280px */
+	}
+}
+
+/* - medium screen */
+@media all and (max-width: 81em) { /* 1296px */
+    .state-indicator:before { content: 'medium'; }
+	.site-id,
+	.site-content {
+		width: 100%;
+	}
+	.site-content {
+		padding: 1em;
+	}
+}
+
+/* - small screen */
+@media all and (max-width: 48em) { /* 768px */
+    .state-indicator:before { content: 'small'; }
+}
+
+/* - tiny screen */
+@media all and (max-width: 19em) { /* 304px */
+    .state-indicator:before { content: 'tiny'; }
+	.images li {
+		width: 100%;
+	}
+}
+
+/* PAGES */
+.images {
+	text-align: center;
+}
+.images > ul {
+	overflow: hidden;
+	font-size: 0;
+}
+.images li {
+	display: inline-block;
+	margin: 1px;
+}
+.images .item {
+	position: relative;
+	overflow: hidden;
+}
+.images .item > p {
+	position: absolute;
+	left: -100%;
+	top: -100%;
+}
+
+.contact > h1,
+.cv > h1 {
+	text-align: center;
+}
+
+.admin .item {
+	padding: 10px 10px 40px;
+	zoom: 1;
+	position: relative;
+	-webkit-box-shadow: 0px 0px 1px #999;
+	-moz-box-shadow: 0px 0px 1px #999;
+	-ms-box-shadow: 0px 0px 1px #999;
+	box-shadow: 0px 0px 1px #999;
+}
+.admin .item:hover {
+	-webkit-box-shadow: 0px 0px 5px #666;
+	-moz-box-shadow: 0px 0px 5px #666;
+	-ms-box-shadow: 0px 0px 5px #666;
+	box-shadow: 0px 0px 5px #666;
+}
+.admin .item:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.admin .item > .item-title {
+	font-size: 16px;
+	font-weight: 700;
+}
+.admin .item > .item-title > span {
+	display: block;
+	font-size: 13px;
+}
+.admin .item > .item-title + * {
+	margin-top: 5px;
+}
+.admin .item a {
+	display: block;
 }

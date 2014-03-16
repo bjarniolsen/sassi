@@ -3,6 +3,7 @@ var fs = require('fs');
 var app = express();
 var hbs = require("hbs");
 var imageEngine = require("./images");
+var helpers = require("./helpers");
 
 app.set("view engine", "html");
 app.engine("html", hbs.__express);
@@ -13,29 +14,6 @@ app.use(express.cookieParser());
 app.use(express.session({secret: '1234567890QWERTY'}));
 
 hbs.registerPartials(__dirname + '/views/partials');
-
-function checkAuth(req, res, next) {
-	if (!req.session.user_id) {
-		res.redirect('/login');
-		//res.send('You are not authorized to view this page');
-	} else {
-		next();
-	}
-}
-
-var spansize = function(len) {
-    var size;
-	if(len === 1) {
-		size = 12;
-	} else if(len === 2) {
-		size = 6;
-	} else if(len === 3) {
-		size = 4;
-	} else if(len > 3) {
-		size = 3;
-	}
-    return size;
-};
 
 app.get('/login', function (req, res) {
     res.render("login");
@@ -62,18 +40,18 @@ app.get("/", function(req, res) {
     res.render("index", {
         title: "Sassi", 
         images: result,
-        spansize: spansize(result.length),
+        spansize: helpers.spansize(result.length),
         nav: categories
     });
 });
 
-app.get("/admin", checkAuth, function(req, res) {
+app.get("/admin", helpers.checkAuth, function(req, res) {
     var result = imageEngine.getAllImages();
     var categories = imageEngine.getCategories();
     res.render("admin/index", {
     	images: result,
     	categories: categories,
-        spansize: spansize(result.length),
+        spansize: helpers.spansize(result.length),
         layout: 'layout/admin'
     });
 });
@@ -138,6 +116,7 @@ app.get("/image/:id", function(req, res) {
     });
 });
 
+// API
 app.get("/api/get_all_images", function(req, res) {
     var images = imageEngine.getAllImages();
     res.send(images);
@@ -166,12 +145,30 @@ app.get("/api/:id", function(req, res) {
     });
 });
 
+app.get("/kontakt", function(req, res) {
+	var categories = imageEngine.getCategories();
+	res.render("kontakt", {
+		title: "Kontakt",
+        currentCategory: "kontakt",
+		nav: categories
+	});
+});
+
+app.get("/cv", function(req, res) {
+	var categories = imageEngine.getCategories();
+	res.render("cv", {
+		title: "cv",
+        currentCategory: "cv",
+		nav: categories
+	});
+});
+
 app.get("/:cat", function(req, res) {
     var result = imageEngine.getImagesByCategory(req.params.cat);
     var categories = imageEngine.getCategories();
     res.render("images", {
         images: result,
-        spansize: spansize(result.length),
+        spansize: helpers.spansize(result.length),
         currentCategory: req.params.cat,
         nav: categories
     });
