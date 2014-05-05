@@ -20,40 +20,28 @@ fs.readFile(file2, 'utf8', function (err, data) {
 		return;
 	}
 	images2 = JSON.parse(data);
-    //console.log(images2);
-    
 
-	var results = [], cats = [], subcat = [];;
-    for(var i=0; i < images2.length; i++) {
-    	//console.log(images2[i]["category"][0]);
-        var cats = images2[i]["category"][0];
-        //console.log(cats.subcategory[0].name);
-        var subcats = cats.subcategory[0].name;
-        console.log(cats.name, subcats);
-        /*while (cats.subcategory[0].name) {
-            cat = cats.subcategory[0].name; // travel deeper
-			console.log(cat);
-		}*/
-    }
-    //console.log(results);
-    
-    
-/*
-    for (var j=0; i<images2.length; i++) {
-    	var cats = images2, titles = [];
-        console.log("hest");
-    	for (var i=0; i<cats.length; i++) {
-        	var cat = cats[i];
-        	console.log(cat.name);
-        	while (cat.subcategory && cat.subcategory[0]) {
-            	cat = cat.subcategory[0]; // travel deeper
-        		// now cat is a subcategory that has no subcategories any more
-        		titles.push(cat.name);
-        	}
-    	}
-    }*/
-    //console.log(titles);
-    //return titles;
+	function traverse(obj) {
+		var ids = [];
+		for (var prop in obj) {
+			if (typeof obj[prop] == "object" && obj[prop]) {
+				if (prop == 'category') {
+					ids = obj[prop].map(function(elem) {
+						return "category:" + elem.name;
+					});
+				} else if (prop == 'subcategory') {
+					ids = obj[prop].map(function(elem) {
+						return "subcategory:" + elem.name;
+					});
+				}
+				ids = ids.concat(traverse(obj[prop]));
+			}
+		}
+		return ids;
+	}    
+	var results = traverse(images2);
+
+    console.log(results);
 });
 
   
