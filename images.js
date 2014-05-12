@@ -1,12 +1,12 @@
 var fs = require('fs');
 var im = require('imagemagick');
 var ncp = require('ncp');
-var file = __dirname + '/assets/json/images.json';
-var file2 = __dirname + '/assets/json/images2.json';
+var imagesFile = __dirname + '/assets/json/images.json';
+var categoriesFile = __dirname + '/assets/json/categories.json';
 var images = [];
-var images2 = [];
+var categories = [];
 
-fs.readFile(file, 'utf8', function (err, data) {
+fs.readFile(imagesFile, 'utf8', function (err, data) {
 	if (err) {
 		console.log('Error: ' + err);
 		return;
@@ -14,14 +14,14 @@ fs.readFile(file, 'utf8', function (err, data) {
 	images = JSON.parse(data);
 });
 
-fs.readFile(file2, 'utf8', function (err, data) {
+fs.readFile(categoriesFile, 'utf8', function (err, data) {
 	if (err) {
 		console.log('Error: ' + err);
 		return;
 	}
-	images2 = JSON.parse(data);
+	categories = JSON.parse(data);
 
-	function traverse(obj) {
+	/*function traverse(obj) {
 		var ids = [];
 		for (var prop in obj) {
 			if (typeof obj[prop] == "object" && obj[prop]) {
@@ -39,9 +39,9 @@ fs.readFile(file2, 'utf8', function (err, data) {
 		}
 		return ids;
 	}    
-	var results = traverse(images2);
+	var results = traverse(images2);*/
 
-    console.log(results);
+    //console.log(results);
 });
 
   
@@ -349,15 +349,13 @@ exports.getLastId = function() {
 }
 
 exports.getCategories = function(req, res) {
-    var arr = {};
-    for ( var i=0; i < images.length; i++ ) {
-        arr[images[i]['category']] = images[i];
+    var result = [];
+    for ( var i=0; i < categories.length; i++ ) {
+        //if (categories[i].category.name === "subcategory") {
+        	result.push(categories[i]);
+        //}
     }
 
-    var result = [];
-    for ( key in arr ) {
-        result.push(arr[key]);
-    }
     return result;
 }
 

@@ -1,6 +1,7 @@
 [
     {
         "id": 0,
+        "catId": 0,
         "category": "malerier",
         "imageurl": "9843090955_a36e52e365.jpg",
         "title": "Ikon",
@@ -9,6 +10,7 @@
     },
     {
         "id": 1,
+        "catId": 2,
         "category": "malerier",
         "imageurl": "9843071594_8449f6f836.jpg",
         "title": "Ikon 2",
@@ -17,6 +19,7 @@
     },
     {
         "id": 2,
+        "catId": 2,
         "category": "malerier",
         "imageurl": "9842824445_22473f6d26.jpg",
         "title": "Ikon 3",

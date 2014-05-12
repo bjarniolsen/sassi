@@ -1,0 +1,33 @@
+[
+    {
+        "id": 0,
+        "name": "malerier",
+        "active": true
+    },
+    {
+        "id": 1,
+        "name": "bodypaint",
+        "subcategory": [
+        	{
+        		"name": "light"
+        	},
+    		{
+        		"name": "dark"
+        	}
+        ],
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "tegninger",
+        "subcategory": [
+        	{
+        		"name": "tusch"
+        	},
+        	{
+        		"name": "blyant"
+        	}
+        ],
+        "active": true
+    }
+]

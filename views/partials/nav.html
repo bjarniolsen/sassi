@@ -1,10 +1,17 @@
 {{#if nav}}
 	<ul>
-	{{#each nav}}
-		<li {{#equal ../currentCategory category }} class="active" {{/equal}}>
-			<a href="/{{category}}">{{category}}</a>
+	{{#nav}}
+		<li {{#equal ../currentCategory name }} class="active" {{/equal}}>
+			<a href="/{{name}}">{{name}}</a>
+			{{#if subcategory}}
+				<ul>
+				{{#subcategory}}
+					<li><a href="/{{name}}">{{name}}</a></li>
+				{{/subcategory}}
+				</ul>
+			{{/if}}
 		</li>
-	{{/each}}
+	{{/nav}}
 		<li {{#equal ../currentCategory "cv" }} class="active" {{/equal}}>
 			<a href="/cv">CV</a>
 		</li>
