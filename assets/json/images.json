@@ -1,8 +1,8 @@
 [
     {
         "id": 0,
-        "catId": 0,
-        "category": "malerier",
+        "catId": 1,
+        "subcategory": "light",
         "imageurl": "9843090955_a36e52e365.jpg",
         "title": "Ikon",
         "description": "",
@@ -10,8 +10,8 @@
     },
     {
         "id": 1,
-        "catId": 2,
-        "category": "malerier",
+        "catId": 1,
+        "subcategory": "light",
         "imageurl": "9843071594_8449f6f836.jpg",
         "title": "Ikon 2",
         "description": "",
@@ -19,8 +19,8 @@
     },
     {
         "id": 2,
-        "catId": 2,
-        "category": "malerier",
+        "catId": 1,
+        "subcategory": "dark",
         "imageurl": "9842824445_22473f6d26.jpg",
         "title": "Ikon 3",
         "description": "",
@@ -28,7 +28,8 @@
     },
     {
         "id": 3,
-        "category": "malerier",
+        "catId": 2,
+        "subcategory": "tusch",
         "imageurl": "9713377829_aabe8929bc.jpg",
         "title": "slanger",
         "description": "",
@@ -36,121 +37,141 @@
     },
     {
         "id": 4,
-        "category": "malerier",
+        "catId": 2,
+        "subcategory": "blyant",
         "imageurl": "sassi_bischoff_8fw719.jpg",
         "title": "**temp"
     },
     {
         "id": 5,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_tqtwi5.jpg",
         "title": "**temp"
     },
     {
         "id": 6,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akryl",
         "imageurl": "sassi_bischoff_fwugpz.jpg",
         "title": "**temp"
     },
     {
         "id": 7,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akryl",
         "imageurl": "sassi_bischoff_1kfnp8.jpg",
         "title": "**temp"
     },
     {
         "id": 8,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akryl",
         "imageurl": "sassi_bischoff_qw95ov.jpg",
         "title": "**temp"
     },
     {
         "id": 9,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_7rvkm7.jpg",
         "title": "**temp"
     },
     {
         "id": 10,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_7tlwnj.jpg",
         "title": "**temp"
     },
     {
         "id": 11,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_kxqtdy.jpg",
         "title": "**temp"
     },
     {
         "id": 12,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_fz6eu3.jpg",
         "title": "**temp"
     },
     {
         "id": 13,
-        "category": "malerier",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_0kq774.jpg",
         "title": "**temp"
     },
     {
         "id": 14,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_ite29n.jpg",
         "title": "**temp"
     },
     {
         "id": 15,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_e5fr84.jpeg",
         "title": "**temp"
     },
     {
         "id": 16,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_4aout2.jpg",
         "title": "**temp"
     },
     {
         "id": 17,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_xhrwdj.jpg",
         "title": "**temp"
     },
     {
         "id": 18,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_ntdn6d.jpg",
         "title": "**temp"
     },
     {
         "id": 19,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_9eqmbi.jpg",
         "title": "**temp"
     },
     {
         "id": 20,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_hn3177.jpg",
         "title": "**temp"
     },
     {
         "id": 21,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_4vr27u.jpg",
         "title": "**temp"
     },
     {
         "id": 22,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_u2b2z2.jpg",
         "title": "**temp"
     },
     {
         "id": 23,
-        "category": "bodypaint",
+        "catId": 0,
+        "subcategory": "akvarel",
         "imageurl": "sassi_bischoff_mbt6qy.jpg",
         "title": "**temp"
     }

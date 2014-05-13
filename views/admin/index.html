@@ -16,10 +16,17 @@
 			</label>
 			<label>
 				<span>Vælg kategori</span>
-				<select name="category">
+				<select name="subcategory">
 					<option value="">---</option>
 					{{#each categories}}
-					<option value="{{category}}">{{category}}</option>
+					<optgroup label="{{name}}">
+						{{#if subcategory}}
+							{{#subcategory}}
+								<option value="{{name}}">{{name}}</option>
+							{{/subcategory}}
+							</ul>
+						{{/if}}
+					</optgroup>
 					{{/each}}
 				</select>
 			</label>

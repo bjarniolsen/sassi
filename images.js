@@ -46,11 +46,13 @@ fs.readFile(categoriesFile, 'utf8', function (err, data) {
 
   
 exports.addImage = function(req, res) {
+	console.log(req.body);
 	var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
 	var category = req.body.newcategory ? req.body.newcategory : req.body.category; 
 	var newJson =  {
 			"id": newId,
-			"category": category,
+			"catId": category,
+			"subcategory": subcategory,
 			"imageurl": req.files.image.name,
 			"title": req.body.title,
 			"description": req.body.description,
@@ -348,21 +350,29 @@ exports.getLastId = function() {
 	return images[images.length-1].id;
 }
 
-exports.getCategories = function(req, res) {
+exports.getCategories = function() {
     var result = [];
     for ( var i=0; i < categories.length; i++ ) {
-        //if (categories[i].category.name === "subcategory") {
-        	result.push(categories[i]);
-        //}
+        result.push(categories[i]);
     }
-
     return result;
 }
 
-exports.getImagesByCategory = function(cat) {
+exports.getCategory = function(cat) {
+    var result = [];
+    for ( var i=0; i < categories.length; i++ ) {
+        if (categories[i].name == cat) {
+        	result.push(categories[i].id);
+        }
+    }
+    return result;
+}
+
+exports.getImagesByCategory = function(cat, subcat) {
     var results = [];
+    var catId = exports.getCategory(cat);
     for(var i=0; i < images.length; i++) {
-        if(images[i].category == cat) {
+        if(images[i].catId == catId && images[i].subcategory == subcat) {
             results.push(images[i]);
         }
     }

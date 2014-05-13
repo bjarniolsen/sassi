@@ -2,11 +2,14 @@
 	<ul>
 	{{#nav}}
 		<li {{#equal ../currentCategory name }} class="active" {{/equal}}>
-			<a href="/{{name}}">{{name}}</a>
+			<!--<a href="/{{name}}">{{name}}</a>-->
+			<span>{{name}}</span>
 			{{#if subcategory}}
 				<ul>
 				{{#subcategory}}
-					<li><a href="/{{name}}">{{name}}</a></li>
+					<li {{#equal ../../../currentSubCategory name }} class="active" {{/equal}}>
+						<a href="/{{../name}}/{{name}}">{{name}}</a>
+					</li>
 				{{/subcategory}}
 				</ul>
 			{{/if}}

@@ -487,20 +487,31 @@ form > button {
 .site-id li + li {
 	margin-top: 20px;
 }
-.site-id li > a {
+.site-id li > a,
+.site-id li > span {
 	display: block;
 	font-size: 16px;
     text-transform: uppercase;
 }
-.site-id li.active > a {
-	border-bottom: 3px solid #a00;
+.site-id li.active > a,
+.site-id li.active > span {
     color: #a00;
+}
+.site-id li.active > a {
+	text-decoration: underline;
 }
 .site-id li > ul {
 	padding-left: 20px;
 }
 .site-id li > ul li + li {
 	margin-top: 5px;
+}
+.site-id li > ul li.active > a {
+}
+.site-id li > ul a {
+	display: block;
+	font-size: 16px;
+    text-transform: none;
 }
 /* - content */
 /* - wide screen */
@@ -510,7 +521,12 @@ form > button {
 	width: 20%;
 }
 .site-content {
-	width: 80%;
+	width: auto;
+}
+.admin .site-id,
+.admin .site-content {
+	float: none;
+	width: 100%;
 }
 /*.site-id,
 .site-content {
@@ -533,12 +549,11 @@ form > button {
 /* - medium screen */
 @media all and (max-width: 81em) { /* 1296px */
     .state-indicator:before { content: 'medium'; }
-	.site-id,
-	.site-content {
-		width: 100%;
+	.site-id {
 	}
 	.site-content {
-		padding: 1em;
+	}
+	.site-content {
 	}
 }
 

@@ -164,12 +164,21 @@ app.get("/cv", function(req, res) {
 });
 
 app.get("/:cat", function(req, res) {
-    var result = imageEngine.getImagesByCategory(req.params.cat);
-    var categories = imageEngine.getCategories();
+	var categories = imageEngine.getCategories();
+    res.render("category", {
+        currentCategory: req.params.cat,
+        nav: categories
+    });
+});
+
+app.get("/:cat/:subcat", function(req, res) {
+    var result = imageEngine.getImagesByCategory(req.params.cat, req.params.subcat);
+	var categories = imageEngine.getCategories();
     res.render("images", {
         images: result,
         spansize: helpers.spansize(result.length),
         currentCategory: req.params.cat,
+        currentSubCategory: req.params.subcat,
         nav: categories
     });
 });
