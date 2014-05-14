@@ -46,13 +46,14 @@ fs.readFile(categoriesFile, 'utf8', function (err, data) {
 
   
 exports.addImage = function(req, res) {
-	console.log(req.body);
 	var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
-	var category = req.body.newcategory ? req.body.newcategory : req.body.category; 
+	//var category = req.body.newcategory ? req.body.newcategory : req.body.category; 
+	var catId = req.body.category.split("-")[0]; 
+	var subCatId = req.body.category.split("-")[1]; 
 	var newJson =  {
 			"id": newId,
-			"catId": category,
-			"subcategory": subcategory,
+			"catId": catId,
+			"subcategory": subCatId,
 			"imageurl": req.files.image.name,
 			"title": req.body.title,
 			"description": req.body.description,
@@ -121,7 +122,7 @@ exports.addImage = function(req, res) {
 	});
     // Append new json to images object
     images.push(newJson);
-    fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     	if (err) {
     		console.log(err);
     	} else {
@@ -163,7 +164,7 @@ exports.addImages = function(req, res) {
 				upload(tmp_path, target_path, image_large, thumb_large, thumb_medium);
     			// Append new json to images object
     			images.push(newJson);
-    			fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    			fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     				if (err) {
     					console.log(err);
     				} else {
@@ -255,7 +256,7 @@ exports.editImage = function(req, res, id) {
             images.splice(i, 1);
     		// Append new json to images object
     		images.push(newJson);
-    		fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    		fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     			if (err) {
     				console.log(err);
     			} else {
@@ -271,7 +272,7 @@ exports.deleteImage = function(id) {
         if(images[i].id == id) {
             var imageId = images[i].id;
             images.splice(i, 1);
-    		fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    		fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     			if (err) {
     				console.log(err);
     			} else {
@@ -287,7 +288,7 @@ exports.muteImage = function(id) {
         if(images[i].id == id) {
             var imageId = images[i].id;
 			images[i]["muted"] = "on";
-    		fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    		fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     			if (err) {
     				console.log(err);
     			} else {
@@ -303,7 +304,7 @@ exports.unmuteImage = function(id) {
         if(images[i].id == id) {
             var imageId = images[i].id;
 			delete images[i]["muted"];
-    		fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    		fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     			if (err) {
     				console.log(err);
     			} else {
@@ -319,7 +320,7 @@ exports.featureImage = function(id) {
         if(images[i].id == id) {
             var imageId = images[i].id;
 			images[i]["featured"] = "on";
-    		fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    		fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     			if (err) {
     				console.log(err);
     			} else {
@@ -335,7 +336,7 @@ exports.unfeatureImage = function(id) {
         if(images[i].id == id) {
             var imageId = images[i].id;
 			delete images[i]["featured"];
-    		fs.writeFile(file, JSON.stringify(images, null, 4), function(err) {
+    		fs.writeFile(imagesFile, JSON.stringify(images, null, 4), function(err) {
     			if (err) {
     				console.log(err);
     			} else {
@@ -350,19 +351,75 @@ exports.getLastId = function() {
 	return images[images.length-1].id;
 }
 
-exports.getCategories = function() {
+exports.addCategory = function(req, res) {
+	var newId = (categories.length > 0) ? (categories[categories.length-1].id + 1) : 0;
+	var newSubCatId = Math.random().toString(36).substr(2,6);
+	var catId = req.body.category;
+	var categoryName = exports.getCategoryName(catId);
+	var category = exports.getCategories(catId);
+	var subcategory = req.body.subcategory;
+	var newJson =  {
+			"id": catId,
+			"name": categoryName,
+			"subcategory": [
+				{
+					"id": newSubCatId,
+					"name": subcategory
+				}
+			],
+			"active": true
+	};
+	console.log(newJson);
+    // Append new json to categories object
+    //categories.push(newJson);
+    /*fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
+    	if (err) {
+    		console.log(err);
+    	} else {
+    		console.log("yay");
+    	}
+    });*/
+}
+
+exports.getCategories = function(catId) {
     var result = [];
     for ( var i=0; i < categories.length; i++ ) {
-        result.push(categories[i]);
+        if (catId && categories[i].id == catId) {
+        	result.push(categories[i]);
+        } else {
+        	result.push(categories[i]);
+        }
     }
     return result;
 }
 
-exports.getCategory = function(cat) {
-    var result = [];
+exports.getCategoryName = function(catId) {
+    for ( var i=0; i < categories.length; i++ ) {
+        if (categories[i].id == catId) {
+        	var result = categories[i].name;
+        }
+    }
+    return result;
+}
+
+exports.getCategoryId = function(cat) {
     for ( var i=0; i < categories.length; i++ ) {
         if (categories[i].name == cat) {
-        	result.push(categories[i].id);
+        	var result = categories[i].id;
+        }
+    }
+    return result;
+}
+
+exports.getSubCategoryName = function(cat, subCatId) {
+    for ( var i=0; i < categories.length; i++ ) {
+        if (categories[i].name == cat) {
+    		var subcategories = categories[i].subcategory;
+    		for ( var j=0; j < subcategories.length; j++ ) {
+        		if (subcategories[j].id == subCatId) {
+        			var result = subcategories[j].name;
+        		}
+        	}
         }
     }
     return result;
@@ -370,9 +427,9 @@ exports.getCategory = function(cat) {
 
 exports.getImagesByCategory = function(cat, subcat) {
     var results = [];
-    var catId = exports.getCategory(cat);
+    var catId = exports.getCategoryId(cat);
     for(var i=0; i < images.length; i++) {
-        if(images[i].catId == catId && images[i].subcategory == subcat) {
+        if(images[i].catId == catId && images[i].subCatId == subcat) {
             results.push(images[i]);
         }
     }

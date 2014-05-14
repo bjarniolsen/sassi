@@ -11,7 +11,7 @@ app.use(express.bodyParser());
 app.use(express.static("assets"));
 
 app.use(express.cookieParser());
-app.use(express.session({secret: '1234567890QWERTY'}));
+app.use(express.session({secret: '1234567890QWERTY', cookie:{maxAge:3600000}}));
 
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -63,6 +63,11 @@ app.post("/admin/upload", function(req, res) {
 
 app.post("/admin/uploads", function(req, res) {
     var result = imageEngine.addImages(req, res);
+	res.redirect("/admin");
+});
+
+app.post("/admin/addcategory", function(req, res) {
+    var result = imageEngine.addCategory(req, res);
 	res.redirect("/admin");
 });
 
@@ -173,12 +178,14 @@ app.get("/:cat", function(req, res) {
 
 app.get("/:cat/:subcat", function(req, res) {
     var result = imageEngine.getImagesByCategory(req.params.cat, req.params.subcat);
+    var subCatName = imageEngine.getSubCategoryName(req.params.cat, req.params.subcat);
 	var categories = imageEngine.getCategories();
     res.render("images", {
         images: result,
         spansize: helpers.spansize(result.length),
         currentCategory: req.params.cat,
-        currentSubCategory: req.params.subcat,
+        currentSubCategoryId: req.params.subcat,
+        currentSubCategoryName: subCatName,
         nav: categories
     });
 });

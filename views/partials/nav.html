@@ -7,8 +7,8 @@
 			{{#if subcategory}}
 				<ul>
 				{{#subcategory}}
-					<li {{#equal ../../../currentSubCategory name }} class="active" {{/equal}}>
-						<a href="/{{../name}}/{{name}}">{{name}}</a>
+					<li {{#equal ../../../currentSubCategoryId id }} class="active" {{/equal}}>
+						<a href="/{{../name}}/{{id}}">{{name}}</a>
 					</li>
 				{{/subcategory}}
 				</ul>

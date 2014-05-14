@@ -4,10 +4,12 @@
         "name": "malerier",
         "subcategory": [
         	{
-        		"name": "akryl"
+        		"id": 0,
+        		"name": "Kulturnat Ålborg 2005"
         	},
     		{
-        		"name": "akvarel"
+        		"id": 1,
+        		"name": "Stark byggemarked 2007"
         	}
         ],
         "active": true
@@ -17,9 +19,11 @@
         "name": "bodypaint",
         "subcategory": [
         	{
+        		"id": 2,
         		"name": "light"
         	},
     		{
+        		"id": 3,
         		"name": "dark"
         	}
         ],
@@ -30,9 +34,11 @@
         "name": "tegninger",
         "subcategory": [
         	{
+        		"id": 4,
         		"name": "tusch"
         	},
         	{
+        		"id": 5,
         		"name": "blyant"
         	}
         ],

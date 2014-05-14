@@ -16,13 +16,13 @@
 			</label>
 			<label>
 				<span>Vælg kategori</span>
-				<select name="subcategory">
+				<select name="category">
 					<option value="">---</option>
 					{{#each categories}}
 					<optgroup label="{{name}}">
 						{{#if subcategory}}
 							{{#subcategory}}
-								<option value="{{name}}">{{name}}</option>
+							<option value="{{../../id}}-{{id}}">{{name}}</option>
 							{{/subcategory}}
 							</ul>
 						{{/if}}
@@ -32,7 +32,8 @@
 			</label>
 			<label>
 				<span>...eller tilføj en ny</span>
-				<input type="text" name="newcategory"/>
+				<button class="new-category">+ ny kategori</button>
+				<!--<input type="text" name="newcategory"/>-->
 			</label>
 			<label>
 				<span>Vises på forsiden</span>
@@ -99,4 +100,22 @@
 	<h2>Ingen billeder</h2>
 	<button class="hest">hest</button>
 	{{/if}}
+</div>
+
+<div class="modal add-category">
+	<h2>Tilføj en ny kategori</h2>
+	<p>Vælg hovedkategori og skriv hvad underkategorien skal hedde</p>
+	<form action="/admin/addcategory" method="post">
+		<select name="category">
+			<option value="">---</option>
+			{{#each categories}}
+				<option value="{{id}}">{{name}}</option>
+			{{/each}}
+		</select>
+		<label>
+			<span>Navn på underkategori</span>
+			<input type="text" name="subcategory"/>
+		</label>
+		<button type="submit">+ tilføj</button>
+	</form>
 </div>
