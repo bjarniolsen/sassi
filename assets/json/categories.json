@@ -3,14 +3,18 @@
         "id": 0,
         "name": "malerier",
         "subcategory": [
-        	{
-        		"id": 0,
-        		"name": "Kulturnat Ålborg 2005"
-        	},
-    		{
-        		"id": 1,
-        		"name": "Stark byggemarked 2007"
-        	}
+            {
+                "id": 0,
+                "name": "Kulturnat Ålborg 2005"
+            },
+            {
+                "id": 1,
+                "name": "Stark byggemarked 2007"
+            },
+            {
+                "id": "6p786h",
+                "name": "Udstilling 2010"
+            }
         ],
         "active": true
     },
@@ -18,14 +22,14 @@
         "id": 1,
         "name": "bodypaint",
         "subcategory": [
-        	{
-        		"id": 2,
-        		"name": "light"
-        	},
-    		{
-        		"id": 3,
-        		"name": "dark"
-        	}
+            {
+                "id": 2,
+                "name": "light"
+            },
+            {
+                "id": 3,
+                "name": "dark"
+            }
         ],
         "active": true
     },
@@ -33,14 +37,14 @@
         "id": 2,
         "name": "tegninger",
         "subcategory": [
-        	{
-        		"id": 4,
-        		"name": "tusch"
-        	},
-        	{
-        		"id": 5,
-        		"name": "blyant"
-        	}
+            {
+                "id": 4,
+                "name": "tusch"
+            },
+            {
+                "id": 5,
+                "name": "blyant"
+            }
         ],
         "active": true
     }

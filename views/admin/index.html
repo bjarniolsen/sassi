@@ -30,11 +30,12 @@
 					{{/each}}
 				</select>
 			</label>
-			<label>
+			<a href="#addcategory" class="add-category">...eller tilføj en ny kategori</a>
+			<!--<label>
 				<span>...eller tilføj en ny</span>
 				<button class="new-category">+ ny kategori</button>
-				<!--<input type="text" name="newcategory"/>-->
-			</label>
+				[><input type="text" name="newcategory"/><]
+			</label>-->
 			<label>
 				<span>Vises på forsiden</span>
 				<input type="checkbox" name="featured"/>
@@ -54,14 +55,18 @@
 				<select name="category">
 					<option value="">---</option>
 					{{#each categories}}
-					<option value="{{category}}">{{category}}</option>
+					<optgroup label="{{name}}">
+						{{#if subcategory}}
+							{{#subcategory}}
+							<option value="{{../../id}}-{{id}}">{{name}}</option>
+							{{/subcategory}}
+							</ul>
+						{{/if}}
+					</optgroup>
 					{{/each}}
 				</select>
 			</label>
-			<label>
-				<span>...eller tilføj en ny</span>
-				<input type="text" name="newcategory"/>
-			</label>
+			<a href="#addcategory" class="add-category">...eller tilføj en ny kategori</a>
 			<button type="submit">Upload</button>
 		</form>
 	</div>
@@ -102,7 +107,7 @@
 	{{/if}}
 </div>
 
-<div class="modal add-category">
+<div class="modal add-category" id="addcategory">
 	<h2>Tilføj en ny kategori</h2>
 	<p>Vælg hovedkategori og skriv hvad underkategorien skal hedde</p>
 	<form action="/admin/addcategory" method="post">

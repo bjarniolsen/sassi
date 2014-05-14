@@ -47,13 +47,12 @@ fs.readFile(categoriesFile, 'utf8', function (err, data) {
   
 exports.addImage = function(req, res) {
 	var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
-	//var category = req.body.newcategory ? req.body.newcategory : req.body.category; 
 	var catId = req.body.category.split("-")[0]; 
 	var subCatId = req.body.category.split("-")[1]; 
 	var newJson =  {
 			"id": newId,
 			"catId": catId,
-			"subcategory": subCatId,
+			"subCatId": subCatId,
 			"imageurl": req.files.image.name,
 			"title": req.body.title,
 			"description": req.body.description,
@@ -135,7 +134,8 @@ exports.addImages = function(req, res) {
 	if(req.files.images.length) {
 
 		var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
-		var category = req.body.newcategory ? req.body.newcategory : req.body.category; 
+		var catId = req.body.category.split("-")[0]; 
+		var subCatId = req.body.category.split("-")[1]; 
 
     	for(var image in req.files.images) {
 			//console.log(req.files.images[image].path);
@@ -143,10 +143,10 @@ exports.addImages = function(req, res) {
 				//.match(/\.(jpg|jpeg|png)$/i)
 				var extension = req.files.images[image].name.split('.').pop();
 				var newName = "sassi_bischoff_" + Math.random().toString(36).substr(2,6) + "." + extension;
-				console.log(newName);
 				var newJson =  {
 						"id": newId,
-						"category": category,
+						"catId": catId,
+						"subCatId": subCatId,
 						"imageurl": newName,
 						"title": "**temp",
 				};
@@ -352,33 +352,28 @@ exports.getLastId = function() {
 }
 
 exports.addCategory = function(req, res) {
-	var newId = (categories.length > 0) ? (categories[categories.length-1].id + 1) : 0;
 	var newSubCatId = Math.random().toString(36).substr(2,6);
-	var catId = req.body.category;
-	var categoryName = exports.getCategoryName(catId);
-	var category = exports.getCategories(catId);
-	var subcategory = req.body.subcategory;
+	//var newSubCatId = parseInt(Math.random()*10000000);
+	//var categoryName = exports.getCategoryName(req.body.category);
+	//var oldCategories = exports.getCategories(catId);
+	//items[items.indexOf(3452)] = 1010;
 	var newJson =  {
-			"id": catId,
-			"name": categoryName,
-			"subcategory": [
-				{
-					"id": newSubCatId,
-					"name": subcategory
-				}
-			],
-			"active": true
+		"id": newSubCatId,
+		"name": req.body.subcategory
 	};
-	console.log(newJson);
-    // Append new json to categories object
-    //categories.push(newJson);
-    /*fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
-    	if (err) {
-    		console.log(err);
-    	} else {
-    		console.log("yay");
+    for ( var i=0; i < categories.length; i++ ) {
+    	if (categories[i].id == req.body.category) {
+    		categories[i].subcategory.push(newJson);
     	}
-    });*/
+    }
+    // Append new json to categories object
+	fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("yay");
+		}
+	});
 }
 
 exports.getCategories = function(catId) {
