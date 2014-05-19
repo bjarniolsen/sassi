@@ -20,33 +20,12 @@ fs.readFile(categoriesFile, 'utf8', function (err, data) {
 		return;
 	}
 	categories = JSON.parse(data);
-
-	/*function traverse(obj) {
-		var ids = [];
-		for (var prop in obj) {
-			if (typeof obj[prop] == "object" && obj[prop]) {
-				if (prop == 'category') {
-					ids = obj[prop].map(function(elem) {
-						return "category:" + elem.name;
-					});
-				} else if (prop == 'subcategory') {
-					ids = obj[prop].map(function(elem) {
-						return "subcategory:" + elem.name;
-					});
-				}
-				ids = ids.concat(traverse(obj[prop]));
-			}
-		}
-		return ids;
-	}    
-	var results = traverse(images2);*/
-
-    //console.log(results);
 });
 
   
 exports.addImage = function(req, res) {
-	var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
+	var newId = Math.random().toString(36).substr(2,6);
+	//var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
 	var catId = req.body.category.split("-")[0]; 
 	var subCatId = req.body.category.split("-")[1]; 
 	var newJson =  {
@@ -133,7 +112,7 @@ exports.addImage = function(req, res) {
 exports.addImages = function(req, res) {
 	if(req.files.images.length) {
 
-		var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
+		var newId = Math.random().toString(36).substr(2,6);
 		var catId = req.body.category.split("-")[0]; 
 		var subCatId = req.body.category.split("-")[1]; 
 
@@ -144,7 +123,7 @@ exports.addImages = function(req, res) {
 				var extension = req.files.images[image].name.split('.').pop();
 				var newName = "sassi_bischoff_" + Math.random().toString(36).substr(2,6) + "." + extension;
 				var newJson =  {
-						"id": newId,
+						"id": Math.random().toString(36).substr(2,6),
 						"catId": catId,
 						"subCatId": subCatId,
 						"imageurl": newName,
@@ -240,14 +219,13 @@ exports.addImages = function(req, res) {
 exports.editImage = function(req, res, id) {
     for(var i=0; i < images.length; i++) {
         if(images[i].id == id) {
-            var origCategory = images[i].category;
-            var imageId = images[i].id;
-            var imageUrl = images[i].imageurl;
-			var category = req.body.newcategory ? req.body.newcategory : req.body.category ? req.body.category : origCategory; 
+			var catId = req.body.category.split("-")[0]; 
+			var subCatId = req.body.category.split("-")[1]; 
 			var newJson =  {
-					"id": imageId,
-					"category": category,
-					"imageurl": imageUrl,
+					"id": images[i].id,
+					"catId": catId ? catId : images[i].catId,
+					"subCatId": subCatId ? subCatId : images[i].subCatId,
+					"imageurl": images[i].imageurl,
 					"title": req.body.title,
 					"description": req.body.description,
 					"featured": req.body.featured
@@ -352,18 +330,85 @@ exports.getLastId = function() {
 }
 
 exports.addCategory = function(req, res) {
+	var newCatId = Math.random().toString(36).substr(2,6);
+	var newJson =  {
+		"id": newCatId,
+		"name": req.body.category,
+		"active": true
+	};
+    // Append new json to categories object
+	categories.push(newJson);
+	fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("yay");
+		}
+	});
+}
+
+exports.editCategory = function(req, res) {
+    for ( var i=0; i < categories.length; i++ ) {
+    	if (categories[i].id == req.body.category) {
+    		categories[i].name = req.body.newcategory;
+    	}
+    }
+    // Append new json to categories object
+	fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("yay");
+		}
+	});
+}
+
+exports.addSubCategory = function(req, res) {
 	var newSubCatId = Math.random().toString(36).substr(2,6);
-	//var newSubCatId = parseInt(Math.random()*10000000);
-	//var categoryName = exports.getCategoryName(req.body.category);
-	//var oldCategories = exports.getCategories(catId);
-	//items[items.indexOf(3452)] = 1010;
 	var newJson =  {
 		"id": newSubCatId,
 		"name": req.body.subcategory
 	};
+    // Append new json to categories object
     for ( var i=0; i < categories.length; i++ ) {
     	if (categories[i].id == req.body.category) {
-    		categories[i].subcategory.push(newJson);
+    		if (categories[i].subcategory) {
+				var newJson =  {
+					"id": newSubCatId,
+					"name": req.body.subcategory
+				};
+    			categories[i].subcategory.push(newJson);
+    		} else {
+				var newJson =  [{
+					"id": newSubCatId,
+					"name": req.body.subcategory
+				}];
+    			categories[i].subcategory = newJson;
+    		}
+    	}
+    }
+	fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("yay");
+		}
+	});
+}
+
+exports.editSubCategory = function(req, res) {
+	var catId = req.body.subcategory.split("-")[0]; 
+	var subCatId = req.body.subcategory.split("-")[1]; 
+    for ( var i=0; i < categories.length; i++ ) {
+    	if (categories[i].id == catId) {
+    		if (categories[i].subcategory) {
+    			var subcategories = categories[i].subcategory;
+    			for ( var j=0; j < subcategories.length; j++ ) {
+        			if (subcategories[j].id == subCatId) {
+        				subcategories[j].name = req.body.newsubcategory;
+        			}
+        		}
+        	}
     	}
     }
     // Append new json to categories object
@@ -392,6 +437,28 @@ exports.getCategoryName = function(catId) {
     for ( var i=0; i < categories.length; i++ ) {
         if (categories[i].id == catId) {
         	var result = categories[i].name;
+        }
+    }
+    return result;
+}
+
+exports.getCategoryNameByImageId = function(id) {
+    var result = {};
+    for ( var i=0; i < images.length; i++ ) {
+        if (images[i].id == id) {
+    		for ( var j=0; j < categories.length; j++ ) {
+        		if (categories[j].id == images[i].catId) {
+        			result.catName = categories[j].name;
+    				var subcategories = categories[j].subcategory;
+    				if (subcategories) {
+    					for ( var k=0; k < subcategories.length; k++ ) {
+        					if (subcategories[k].id == images[i].subCatId) {
+        						result.subCatName = subcategories[k].name;
+        					}
+        				}
+        			}
+        		}
+        	}
         }
     }
     return result;

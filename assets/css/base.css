@@ -1,5 +1,6 @@
 /* RESET */
 body {
+    margin: 0;
     font-family: sans-serif;
     font-size: 13px;
     line-height: 1.2;
@@ -13,8 +14,7 @@ body {
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
 }
-a,
-a:visited {
+a {
     color: #000;
     text-decoration: none;
 }
@@ -61,10 +61,10 @@ ul, ol {
 .combine-layout > .break ~ * {
     margin-top: 20px;
 }
-.combine-layout,
+/*.combine-layout,
 .section {
     margin-top: 20px;
-}
+}*/
 [class*="span-"] > .section:first-child {
 	margin-top: 0;
 }
@@ -80,7 +80,7 @@ ul, ol {
 .span-4,
 .span-3,
 .span-2 {
-    padding: 0 10px;
+    padding: 10px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -139,7 +139,7 @@ ul, ol {
     padding: 20px;
 }
 .boxed::before {
-	content: "";
+	/*content: "";
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -151,11 +151,11 @@ ul, ol {
 	-moz-box-shadow: 0px 0px 1px #666;
 	-ms-box-shadow: 0px 0px 1px #666;
 	box-shadow: 0px 0px 1px #666;
-	border-collapse: separate;
+	border-collapse: separate;*/
 }
 .boxed > .combine-layout,
 .boxed-image > .combine-layout {
-    margin-top: 0;
+    margin-top: -10px;
     margin-left: -10px;
     margin-right: -10px;
 }
@@ -409,18 +409,26 @@ form > button {
 
 /* UTILITIES */
 .utilities {
+	max-height: 0;
+	overflow: hidden;
 	position: absolute;
-	bottom: 10px;
-	left: 10px;
+	top: 0;
+	left: 0;
+	right: 0;
 	margin: 0 !important;
 	padding: 0;
+	line-height: 60px;
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0px 3px 5px -2px #999;
+	transition: max-height 300ms;
 }
 .utility {
-	float: left;
+	display: inline-block !important;
 	margin: 0;
 	padding: 0;
-    font-family: monospace;
-    font-size: 11px;
+	font-family: 'Lucida Sans Unicode','Lucida Grande', 'Lucida Sans', 'DejaVu Sans Condensed', sans-serif;
+    font-size: 12px;
 	color: #999;
 	text-decoration: none;
 }
@@ -433,6 +441,59 @@ form > button {
 .utility + .utility:before {
 	content: "·";
 	margin-right: 5px;
+}
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	background: rgba(0,0,0,0.8);
+	opacity: 0;
+	-webkit-transition: opacity 300ms ease-in;
+	-moz-transition: opacity 300ms ease-in;
+	transition: opacity 300ms ease-in;
+	pointer-events: none;
+}
+.modal > div {
+	width: 500px;
+	position: relative;
+	margin: 10% auto;
+	padding: 40px;
+	background: #fff;
+	border-radius: 2px 0 2px 2px;
+}
+.modal > div > .close-dialog {
+	position: absolute;
+	z-index: 2;
+	top: -30px;
+	right: 0;
+	padding: 10px 10px 5px;
+	color: #666;
+	background-color: #fff;
+	border-radius: 2px 2px 0 0;
+}
+.modal > div > .close-dialog:hover {
+	color: #333;
+	text-decoration: underline;
+}
+.modal form {
+	background-color: #fff;
+}
+.modal form label input[type="text"],
+.modal form > label input[type="text"],
+.modal form label input[type="password"],
+.modal form > label input[type="password"],
+.modal form label input[type="email"],
+.modal form > label input[type="email"],
+.modal form label input[type="tel"],
+.modal form > label input[type="tel"],
+.modal form label input[type="number"],
+.modal form > label input[type="number"],
+.modal form label textarea,
+.modal form > label textarea {
+	width: 100%;
 }
 /*
  * Experimental Device State Detection with CSS Media Queries and JavaScript
@@ -526,7 +587,9 @@ form > button {
 .admin .site-id,
 .admin .site-content {
 	float: none;
+	position: relative;
 	width: 100%;
+	padding-top: 40px;
 }
 /*.site-id,
 .site-content {
@@ -535,6 +598,7 @@ form > button {
 }*/
 .images li {
 	width: 200px;
+	margin: 10px;
 }
 
 /* - large screen */
@@ -589,7 +653,6 @@ form > button {
 }
 .images li {
 	display: inline-block;
-	margin: 1px;
 }
 .images .item {
 	position: relative;
@@ -606,8 +669,59 @@ form > button {
 	text-align: center;
 }
 
+.admin .toolbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	overflow: hidden;
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 5px;
+	text-align: center;
+	background-color: #f5f5f5;
+	box-shadow: 0 -5px 15px 0 #333;
+	border-bottom: 1px solid #e0e0e0;
+}
+.admin .toolbar ul {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.admin .toolbar .tools {
+	margin-left: 2em;
+}
+.admin .toolbar .tools:first-child {
+	margin-left: 0;
+}
+.admin #addimage:target,
+.admin #addimages:target,
+.admin #addsubcategory:target,
+.admin #addcategory:target,
+.admin #editcategory:target,
+.admin #editsubcategory:target {
+	z-index: 99999;
+	opacity:1;
+	pointer-events: auto;
+	/*position: static;*/
+	/*max-height: 999px;*/
+}
+.admin .images .sort {
+	font-size: 13px;
+}
+.admin .images .sort > li {
+	vertical-align: top;
+}
+.admin .images .sort > li > span {
+	font-weight: 700;
+}
+.admin .images .item > p {
+	position: static;
+}
+
 .admin .item {
-	padding: 10px 10px 40px;
+	padding: 10px;
 	zoom: 1;
 	position: relative;
 	-webkit-box-shadow: 0px 0px 1px #999;
@@ -629,7 +743,11 @@ form > button {
 	line-height: 0;
 	height: 0;
 }
+.admin .item:hover .utilities {
+	max-height: 100px;
+}
 .admin .item > .item-title {
+	margin: 10px 0 0;
 	font-size: 16px;
 	font-weight: 700;
 }

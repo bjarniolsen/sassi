@@ -9,17 +9,20 @@
 		<textarea name="description">{{image.description}}</textarea>
 	</label>
 	<label>
-		<span>Vælg kategori (nuværende: {{image.category}})</span>
+		<span>Vælg kategori (nuværende: {{category}} > {{subcategory}})</span>
 		<select name="category">
 			<option value="">---</option>
 			{{#each categories}}
-				<option value="{{category}}">{{category}}</option>
+			<optgroup label="{{name}}">
+				{{#if subcategory}}
+					{{#subcategory}}
+					<option value="{{../../id}}-{{id}}">{{name}}</option>
+					{{/subcategory}}
+					</ul>
+				{{/if}}
+			</optgroup>
 			{{/each}}
 		</select>
-	</label>
-	<label>
-		<span>...eller tilføj en ny</span>
-		<input type="text" name="newcategory" />
 	</label>
 	<label>
 		<span>Vises på forsiden</span>

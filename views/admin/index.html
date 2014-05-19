@@ -1,89 +1,31 @@
-<div class="combine-layout">
-	<div class="span-6">
-		<form action="/admin/upload" method="post" enctype="multipart/form-data" class="section boxed">
-			<h1>Upload et billede</h1>
-			<label>
-				<span>Vælg et billede</span>
-				<input type="file" name="image"/>
-			</label>
-			<label>
-				<span>Titel</span>
-				<input type="text" name="title"/>
-			</label>
-			<label>
-				<span>Beskrivelse</span>
-				<textarea name="description"></textarea>
-			</label>
-			<label>
-				<span>Vælg kategori</span>
-				<select name="category">
-					<option value="">---</option>
-					{{#each categories}}
-					<optgroup label="{{name}}">
-						{{#if subcategory}}
-							{{#subcategory}}
-							<option value="{{../../id}}-{{id}}">{{name}}</option>
-							{{/subcategory}}
-							</ul>
-						{{/if}}
-					</optgroup>
-					{{/each}}
-				</select>
-			</label>
-			<a href="#addcategory" class="add-category">...eller tilføj en ny kategori</a>
-			<!--<label>
-				<span>...eller tilføj en ny</span>
-				<button class="new-category">+ ny kategori</button>
-				[><input type="text" name="newcategory"/><]
-			</label>-->
-			<label>
-				<span>Vises på forsiden</span>
-				<input type="checkbox" name="featured"/>
-			</label>
-			<button type="submit">Upload</button>
-		</form>
-	</div>
-	<div class="span-6">
-		<form action="/admin/uploads" method="post" enctype="multipart/form-data" class="section boxed">
-			<h1>Upload flere billeder på én gang</h1>
-			<label>
-				<span>Vælg billeder ved at markere dem</span>
-				<input type="file" name="images" multiple="multiple"/>
-			</label>
-			<label>
-				<span>Vælg evt. en kategori til alle billederne</span>
-				<select name="category">
-					<option value="">---</option>
-					{{#each categories}}
-					<optgroup label="{{name}}">
-						{{#if subcategory}}
-							{{#subcategory}}
-							<option value="{{../../id}}-{{id}}">{{name}}</option>
-							{{/subcategory}}
-							</ul>
-						{{/if}}
-					</optgroup>
-					{{/each}}
-				</select>
-			</label>
-			<a href="#addcategory" class="add-category">...eller tilføj en ny kategori</a>
-			<button type="submit">Upload</button>
-		</form>
-	</div>
-</div>
-
-<div class="section boxed admin">
+<div class="section boxed images admin">
 	{{#if images}}
 	<h2>Alle billeder</h2>
-	<ul class="combine-layout">
+	<ul class="sort">
+		{{#each categories}}
+		<li>
+			<span>{{name}}</span>
+			{{#if subcategory}}
+				<ul>
+				{{#subcategory}}
+					<li><a href="/admin/{{../../name}}/{{id}}">{{name}}</a></li>
+				{{/subcategory}}
+				</ul>
+			{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+	<ul>
 		{{#each images}}
-    	<li class="span-{{../spansize}}">
-			<div class="item image-2{{#if muted}} is-muted{{/if}}{{#if featured}} is-featured{{/if}}">
+    	<li>
+			<div class="item{{#if muted}} is-muted{{/if}}{{#if featured}} is-featured{{/if}}">
         		<a href="/admin/image/{{id}}" class="image-wrap">
-            		<img src="/images/thumb/medium/{{imageurl}}" alt="{{title}}"/>
+            		<img src="/images/thumb/large/{{imageurl}}" alt="{{title}}"/>
         		</a>
-        		<p class="item-title">{{title}} <span>(Kateori: {{category}})</span></p>
+        		<p class="item-title">{{title}}</span></p>
+        		{{#if description}}
         		<p class="item-description">{{description}}</p>
+        		{{/if}}
         		<div class="utilities">
         			<a href="/admin/delete/{{id}}" class="utility delete">Slet</a>
         			{{#if muted}}
@@ -105,22 +47,4 @@
 	<h2>Ingen billeder</h2>
 	<button class="hest">hest</button>
 	{{/if}}
-</div>
-
-<div class="modal add-category" id="addcategory">
-	<h2>Tilføj en ny kategori</h2>
-	<p>Vælg hovedkategori og skriv hvad underkategorien skal hedde</p>
-	<form action="/admin/addcategory" method="post">
-		<select name="category">
-			<option value="">---</option>
-			{{#each categories}}
-				<option value="{{id}}">{{name}}</option>
-			{{/each}}
-		</select>
-		<label>
-			<span>Navn på underkategori</span>
-			<input type="text" name="subcategory"/>
-		</label>
-		<button type="submit">+ tilføj</button>
-	</form>
 </div>

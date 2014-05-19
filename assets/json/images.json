@@ -1,32 +1,5 @@
 [
     {
-        "id": 0,
-        "catId": 1,
-        "subCatId": 2,
-        "imageurl": "9843090955_a36e52e365.jpg",
-        "title": "Ikon",
-        "description": "",
-        "featured": "on"
-    },
-    {
-        "id": 1,
-        "catId": 1,
-        "subCatId": 2,
-        "imageurl": "9843071594_8449f6f836.jpg",
-        "title": "Ikon 2",
-        "description": "",
-        "featured": "on"
-    },
-    {
-        "id": 2,
-        "catId": 1,
-        "subCatId": 3,
-        "imageurl": "9842824445_22473f6d26.jpg",
-        "title": "Ikon 3",
-        "description": "",
-        "featured": "on"
-    },
-    {
         "id": 3,
         "catId": 2,
         "subCatId": 4,
@@ -47,13 +20,6 @@
         "catId": 0,
         "subCatId": 1,
         "imageurl": "sassi_bischoff_tqtwi5.jpg",
-        "title": "**temp"
-    },
-    {
-        "id": 6,
-        "catId": 0,
-        "subCatId": 0,
-        "imageurl": "sassi_bischoff_fwugpz.jpg",
         "title": "**temp"
     },
     {
@@ -82,13 +48,6 @@
         "catId": 0,
         "subCatId": 1,
         "imageurl": "sassi_bischoff_7tlwnj.jpg",
-        "title": "**temp"
-    },
-    {
-        "id": 11,
-        "catId": 0,
-        "subCatId": 1,
-        "imageurl": "sassi_bischoff_kxqtdy.jpg",
         "title": "**temp"
     },
     {
@@ -179,7 +138,8 @@
         "id": 24,
         "imageurl": "9843071594_8449f6f836.jpg",
         "title": "Abehovede",
-        "description": "Det er fint"
+        "description": "Det er fint",
+        "muted": "on"
     },
     {
         "id": 25,
@@ -196,5 +156,81 @@
         "imageurl": "9713377829_aabe8929bc.jpg",
         "title": "slangebillede",
         "description": "Duper"
+    },
+    {
+        "id": 0,
+        "catId": "0",
+        "subCatId": "0",
+        "imageurl": "9843090955_a36e52e365.jpg",
+        "title": "Ikon",
+        "description": "",
+        "featured": "on"
+    },
+    {
+        "id": 1,
+        "catId": "0",
+        "subCatId": "0",
+        "imageurl": "9843071594_8449f6f836.jpg",
+        "title": "Ikon 2",
+        "description": "",
+        "featured": "on"
+    },
+    {
+        "id": 11,
+        "catId": "0",
+        "subCatId": "0",
+        "imageurl": "sassi_bischoff_kxqtdy.jpg",
+        "title": "**temp",
+        "description": "",
+        "featured": "on"
+    },
+    {
+        "id": 2,
+        "catId": "0",
+        "subCatId": "0",
+        "imageurl": "9842824445_22473f6d26.jpg",
+        "title": "Ikon 3",
+        "description": ""
+    },
+    {
+        "id": "fkcebh",
+        "catId": "0",
+        "subCatId": "6p786h",
+        "imageurl": "steampunk-the-mad-scientist-mike-savad.jpg",
+        "title": "punky punky",
+        "description": "det er punk"
+    },
+    {
+        "id": "hn4uhj",
+        "catId": "2",
+        "subCatId": "4",
+        "imageurl": "sassi_bischoff_rgqiwd.jpg",
+        "title": "**temp"
+    },
+    {
+        "id": "pdkfvu",
+        "catId": "2",
+        "subCatId": "4",
+        "imageurl": "sassi_bischoff_fgwtjq.jpg",
+        "title": "**temp",
+        "featured": "on",
+        "muted": "on"
+    },
+    {
+        "id": "qj2tfi",
+        "catId": "2",
+        "subCatId": "5",
+        "imageurl": "sassi_bischoff_z0dbvv.jpg",
+        "title": "Birger Jarl",
+        "description": "Han er grim"
+    },
+    {
+        "id": 6,
+        "catId": "0",
+        "subCatId": "6p786h",
+        "imageurl": "sassi_bischoff_fwugpz.jpg",
+        "title": "Stones",
+        "description": "Der flyver ned eller op??",
+        "featured": "on"
     }
 ]

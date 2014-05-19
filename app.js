@@ -71,6 +71,21 @@ app.post("/admin/addcategory", function(req, res) {
 	res.redirect("/admin");
 });
 
+app.post("/admin/addsubcategory", function(req, res) {
+    var result = imageEngine.addSubCategory(req, res);
+	res.redirect("/admin");
+});
+
+app.post("/admin/editcategory", function(req, res) {
+    var result = imageEngine.editCategory(req, res);
+	res.redirect("/admin");
+});
+
+app.post("/admin/editsubcategory", function(req, res) {
+    var result = imageEngine.editSubCategory(req, res);
+	res.redirect("/admin");
+});
+
 app.get("/admin/mute/:id", function(req, res) {
 	var result = imageEngine.muteImage(req.params.id);
 	res.redirect("/admin");
@@ -101,13 +116,28 @@ app.post("/admin/edit/:id", function(req, res) {
 	res.redirect("/admin");
 });
 
-app.get("/admin/image/:id", function(req, res) {
+app.get("/admin/image/:id", helpers.checkAuth, function(req, res) {
     var image = imageEngine.getImage(req.params.id);
+    var imageCategoryNames = imageEngine.getCategoryNameByImageId(req.params.id);
     var categories = imageEngine.getCategories();
     res.render("admin/image", {
         image: image,
+        category: imageCategoryNames.catName,
+        subcategory: imageCategoryNames.subCatName,
     	categories: categories,
         layout: 'layout/admin'            
+    });
+});
+
+app.get("/admin/:cat/:subcat", helpers.checkAuth, function(req, res) {
+    var result = imageEngine.getImagesByCategory(req.params.cat, req.params.subcat);
+    var subCatName = imageEngine.getSubCategoryName(req.params.cat, req.params.subcat);
+	var categories = imageEngine.getCategories();
+    res.render("admin/index", {
+    	images: result,
+    	categories: categories,
+        spansize: helpers.spansize(result.length),
+        layout: 'layout/admin'
     });
 });
 

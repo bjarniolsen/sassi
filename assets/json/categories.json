@@ -24,11 +24,15 @@
         "subcategory": [
             {
                 "id": 2,
-                "name": "light"
+                "name": "Integration"
             },
             {
                 "id": 3,
                 "name": "dark"
+            },
+            {
+                "id": "a8kusq",
+                "name": "light"
             }
         ],
         "active": true
@@ -47,5 +51,16 @@
             }
         ],
         "active": true
+    },
+    {
+        "id": "0n49mj",
+        "name": "geder",
+        "active": true,
+        "subcategory": [
+            {
+                "id": "4017sk",
+                "name": "korte"
+            }
+        ]
     }
 ]

@@ -12,15 +12,10 @@
     <body>
         <div class="site-wrapper admin">
 
-            <div class="site-id" role="banner">
-                <div class="site-logo">
-                    <a href="/admin">Forsiden</a>
-                </div>
-                {{>nav}}
-            </div>
-
             <div class="site-content">
+                {{>toolbar}}
                 {{{body}}}
+                {{>modals}}
             </div>
 
         </div>
