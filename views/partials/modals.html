@@ -1,0 +1,156 @@
+<div class="modal add-image" id="addimage">
+	<div>
+		<a href="#close" title="Close" class="close-dialog">Luk</a>
+		<form action="/admin/upload" method="post" enctype="multipart/form-data">
+			<h1>Upload et billede</h1>
+			<label>
+				<span>Vælg et billede</span>
+				<input type="file" name="image"/>
+			</label>
+			<label>
+				<span>Titel</span>
+				<input type="text" name="title"/>
+			</label>
+			<label>
+				<span>Beskrivelse</span>
+				<textarea name="description"></textarea>
+			</label>
+			<label>
+				<span>Vælg kategori</span>
+				<select name="category">
+					<option value="">---</option>
+					{{#each categories}}
+					<optgroup label="{{name}}">
+						{{#if subcategory}}
+							{{#subcategory}}
+							<option value="{{../../id}}-{{id}}">{{name}}</option>
+							{{/subcategory}}
+							</ul>
+						{{/if}}
+					</optgroup>
+					{{/each}}
+				</select>
+			</label>
+			<label>
+				<span>Vises på forsiden</span>
+				<input type="checkbox" name="featured"/>
+			</label>
+			<button type="submit">Upload</button>
+		</form>
+	</div>
+</div>
+
+<div class="modal add-images" id="addimages">
+	<div>
+		<a href="#close" title="Close" class="close-dialog">Luk</a>
+		<form action="/admin/uploads" method="post" enctype="multipart/form-data">
+			<h1>Upload flere billeder på én gang</h1>
+			<label>
+				<span>Vælg billeder ved at markere dem</span>
+				<input type="file" name="images" multiple="multiple"/>
+			</label>
+			<label>
+				<span>Vælg evt. en kategori til alle billederne</span>
+				<select name="category">
+					<option value="">---</option>
+					{{#each categories}}
+					<optgroup label="{{name}}">
+						{{#if subcategory}}
+							{{#subcategory}}
+							<option value="{{../../id}}-{{id}}">{{name}}</option>
+							{{/subcategory}}
+							</ul>
+						{{/if}}
+					</optgroup>
+					{{/each}}
+				</select>
+			</label>
+			<button type="submit">Upload</button>
+		</form>
+	</div>
+</div>
+
+<div class="modal add-category" id="addcategory">
+	<div>
+		<a href="#close" title="Close" class="close-dialog">Luk</a>
+		<form action="/admin/addcategory" method="post">
+			<h2>Tilføj en ny kategori</h2>
+			<p>Skriv hvad kategorien skal hedde</p>
+			<label>
+				<span>Navn på kategori</span>
+				<input type="text" name="category"/>
+			</label>
+			<button type="submit">+ tilføj</button>
+		</form>
+	</div>
+</div>
+
+<div class="modal add-subcategory" id="addsubcategory">
+	<div>
+		<a href="#close" title="Close" class="close-dialog">Luk</a>
+		<form action="/admin/addsubcategory" method="post">
+			<h2>Tilføj en ny underkategori</h2>
+			<p>Vælg hovedkategori og skriv hvad underkategorien skal hedde</p>
+			<select name="category">
+				<option value="">---</option>
+				{{#each categories}}
+					<option value="{{id}}">{{name}}</option>
+				{{/each}}
+			</select>
+			<label>
+				<span>Navn på underkategori</span>
+				<input type="text" name="subcategory"/>
+			</label>
+			<button type="submit">+ tilføj</button>
+		</form>
+	</div>
+</div>
+
+<div class="modal edit-category" id="editcategory">
+	<div>
+		<a href="#close" title="Close" class="close-dialog">Luk</a>
+		<form action="/admin/editcategory" method="post">
+			<h2>Rediger en kategori</h2>
+			<p>Vælg kategorien og giv den et nyt navn</p>
+			<select name="category">
+				<option value="">---</option>
+				{{#each categories}}
+					<option value="{{id}}">{{name}}</option>
+				{{/each}}
+			</select>
+			<label>
+				<span>Navn på kategori</span>
+				<input type="text" name="newcategory"/>
+			</label>
+			<button type="submit">+ tilføj</button>
+		</form>
+	</div>
+</div>
+
+<div class="modal edit-subcategory" id="editsubcategory">
+	<div>
+		<a href="#close" title="Close" class="close-dialog">Luk</a>
+		<form action="/admin/editsubcategory" method="post">
+			<h2>Rediger en underkategori</h2>
+			<p>Vælg underkategorien og giv den et nyt navn</p>
+			<select name="subcategory">
+				<option value="">---</option>
+				{{#each categories}}
+				<optgroup label="{{name}}">
+					{{#if subcategory}}
+						{{#subcategory}}
+						<option value="{{../../id}}-{{id}}">{{name}}</option>
+						{{/subcategory}}
+						</ul>
+					{{/if}}
+				</optgroup>
+				{{/each}}
+			</select>
+			<label>
+				<span>Navn på underkategori</span>
+				<input type="text" name="newsubcategory"/>
+			</label>
+			<button type="submit">+ tilføj</button>
+		</form>
+	</div>
+</div>

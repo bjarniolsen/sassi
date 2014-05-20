@@ -1,0 +1,26 @@
+<div class="toolbar">
+	<a href="#sortmenu" class="tools">Sorter</a>
+	<ul class="sort" id="sortmenu">
+		<li>
+			<a href="/admin">Alle billeder</a>
+		</li>
+		{{#each categories}}
+		<li>
+			<span {{#equal ../currentCategoryName name }} class="active" {{/equal}}>{{name}}</span>
+			{{#if subcategory}}
+				<ul>
+				{{#subcategory}}
+					<li><a href="/admin/{{../../name}}/{{id}}">{{name}}</a></li>
+				{{/subcategory}}
+				</ul>
+			{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+	<a href="#addimage" class="tools">+ billede</a>
+	<a href="#addimages" class="tools">+ flere billeder</a>
+	<a href="#addcategory" class="tools">+ kategori</a>
+	<a href="#addsubcategory" class="tools">+ underkategori</a>
+	<a href="#editcategory" class="tools">rediger kategorier</a>
+	<a href="#editsubcategory" class="tools">rediger underkategorier</a>
+</div>
