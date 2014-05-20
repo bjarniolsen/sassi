@@ -136,6 +136,8 @@ app.get("/admin/:cat/:subcat", helpers.checkAuth, function(req, res) {
     res.render("admin/index", {
     	images: result,
     	categories: categories,
+    	currentCategoryName: req.params.cat,
+    	currentSubCategoryName: subCatName,
         spansize: helpers.spansize(result.length),
         layout: 'layout/admin'
     });

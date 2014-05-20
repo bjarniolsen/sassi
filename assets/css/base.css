@@ -649,6 +649,7 @@ form > button {
 }
 .images > ul {
 	overflow: hidden;
+	margin-top: 20px;
 	font-size: 0;
 }
 .images li {
@@ -669,13 +670,13 @@ form > button {
 	text-align: center;
 }
 
+/* ADMIN */
 .admin .toolbar {
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 2;
 	width: 100%;
-	overflow: hidden;
 	height: 40px;
 	line-height: 40px;
 	margin-bottom: 5px;
@@ -684,16 +685,91 @@ form > button {
 	box-shadow: 0 -5px 15px 0 #333;
 	border-bottom: 1px solid #e0e0e0;
 }
-.admin .toolbar ul {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
 .admin .toolbar .tools {
 	margin-left: 2em;
+	color: #999;
 }
 .admin .toolbar .tools:first-child {
 	margin-left: 0;
+}
+.admin #sortmenu:target {
+	max-height: 999px;
+}
+.admin .toolbar .sort {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: auto;
+	margin: 0;
+	overflow: hidden;
+	font-size: 13px;
+	text-align: left;
+	background-color: #fff;
+	border-top: 1px solid #f9f9f9;
+	border-bottom: 1px solid #ccc;
+	box-shadow: 0px 2px 5px -1px #ccc;
+	max-height: 0;
+	transition: max-height 400ms;
+}
+.admin .toolbar .sort > li {
+	display: block;
+	width: auto;
+	margin: 0;
+	vertical-align: top;
+}
+.admin .toolbar .sort > li:first-child {
+	margin-left: 0;
+}
+.admin .toolbar .sort > li > a,
+.admin .toolbar .sort > li > span {
+	display: block;
+	padding: 0 10px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #666;
+	cursor: pointer;
+}
+.admin .toolbar .sort > li > a:after,
+.admin .toolbar .sort > li > span:after {
+	margin-left: 10px;
+	font-size: 16px;
+	color: #999;
+}
+.admin .toolbar .sort > li > span:after {
+	content: "\25BE";
+}
+.admin .toolbar .sort > li > a:after {
+	content: "\25B8";
+}
+.admin .toolbar .sort > li > span.active {
+	color: #000;
+}
+.admin .toolbar .sort > li > ul {
+	width: 100%;
+}
+.admin .toolbar .sort > li:hover {
+	overflow: visible;
+}
+.admin .toolbar .sort > li li {
+	display: block;
+	width: auto;
+	margin: 0 0 0 20px;
+}
+.admin .toolbar .sort > li:hover li {
+	opacity: 1;
+}
+.admin .toolbar .sort > li li + li {
+	border-top: 1px solid #f9f9f9;
+}
+.admin .toolbar .sort > li li a {
+	display: block;
+	padding: 0 10px 10px 0;
+	line-height: 1.3;
+	color: #666;
+}
+.admin .toolbar .sort > li li a:hover {
+	color: #000;
 }
 .admin #addimage:target,
 .admin #addimages:target,
@@ -707,14 +783,8 @@ form > button {
 	/*position: static;*/
 	/*max-height: 999px;*/
 }
-.admin .images .sort {
-	font-size: 13px;
-}
-.admin .images .sort > li {
-	vertical-align: top;
-}
-.admin .images .sort > li > span {
-	font-weight: 700;
+.admin .images > h2 {
+	margin: 20px auto;
 }
 .admin .images .item > p {
 	position: static;

@@ -1,20 +1,12 @@
 <div class="section boxed images admin">
-	{{#if images}}
+
+	{{#if currentCategoryName}}
+	<h2>{{currentSubCategoryName}}</h2>
+	{{else}}
 	<h2>Alle billeder</h2>
-	<ul class="sort">
-		{{#each categories}}
-		<li>
-			<span>{{name}}</span>
-			{{#if subcategory}}
-				<ul>
-				{{#subcategory}}
-					<li><a href="/admin/{{../../name}}/{{id}}">{{name}}</a></li>
-				{{/subcategory}}
-				</ul>
-			{{/if}}
-		</li>
-		{{/each}}
-	</ul>
+	{{/if}}
+
+	{{#if images}}
 	<ul>
 		{{#each images}}
     	<li>
@@ -44,7 +36,7 @@
 		{{/each}}
 	</ul>
 	{{else}}
-	<h2>Ingen billeder</h2>
+	<p>Ingen billeder i denne kategori</p>
 	<button class="hest">hest</button>
 	{{/if}}
 </div>

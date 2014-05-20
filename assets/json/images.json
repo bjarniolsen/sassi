@@ -41,7 +41,8 @@
         "catId": 0,
         "subCatId": 1,
         "imageurl": "sassi_bischoff_7rvkm7.jpg",
-        "title": "**temp"
+        "title": "**temp",
+        "muted": "on"
     },
     {
         "id": 10,
