@@ -66,13 +66,6 @@
         "title": "**temp"
     },
     {
-        "id": 14,
-        "catId": 0,
-        "subCatId": 1,
-        "imageurl": "sassi_bischoff_ite29n.jpg",
-        "title": "**temp"
-    },
-    {
         "id": 15,
         "catId": 0,
         "subCatId": 1,
@@ -192,14 +185,6 @@
         "imageurl": "9842824445_22473f6d26.jpg",
         "title": "Ikon 3",
         "description": ""
-    },
-    {
-        "id": "fkcebh",
-        "catId": "0",
-        "subCatId": "6p786h",
-        "imageurl": "steampunk-the-mad-scientist-mike-savad.jpg",
-        "title": "punky punky",
-        "description": "det er punk"
     },
     {
         "id": "hn4uhj",

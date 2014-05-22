@@ -1,8 +1,8 @@
-<div class="modal add-image" id="addimage">
+<div class="modal add-image" id="addimage" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
 	<div>
 		<a href="#close" title="Close" class="close-dialog">Luk</a>
 		<form action="/admin/upload" method="post" enctype="multipart/form-data">
-			<h1>Upload et billede</h1>
+			<h1 id="modal-label">Upload et billede</h1>
 			<label>
 				<span>Vælg et billede</span>
 				<input type="file" name="image"/>
@@ -40,11 +40,11 @@
 	</div>
 </div>
 
-<div class="modal add-images" id="addimages">
+<div class="modal add-images" id="addimages" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
 	<div>
 		<a href="#close" title="Close" class="close-dialog">Luk</a>
 		<form action="/admin/uploads" method="post" enctype="multipart/form-data">
-			<h1>Upload flere billeder på én gang</h1>
+			<h1 id="modal-label">Upload flere billeder på én gang</h1>
 			<label>
 				<span>Vælg billeder ved at markere dem</span>
 				<input type="file" name="images" multiple="multiple"/>
@@ -70,11 +70,11 @@
 	</div>
 </div>
 
-<div class="modal add-category" id="addcategory">
+<div class="modal add-category" id="addcategory" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
 	<div>
 		<a href="#close" title="Close" class="close-dialog">Luk</a>
 		<form action="/admin/addcategory" method="post">
-			<h2>Tilføj en ny kategori</h2>
+			<h2 id="modal-label">Tilføj en ny kategori</h2>
 			<p>Skriv hvad kategorien skal hedde</p>
 			<label>
 				<span>Navn på kategori</span>
@@ -85,11 +85,11 @@
 	</div>
 </div>
 
-<div class="modal add-subcategory" id="addsubcategory">
+<div class="modal add-subcategory" id="addsubcategory" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
 	<div>
 		<a href="#close" title="Close" class="close-dialog">Luk</a>
 		<form action="/admin/addsubcategory" method="post">
-			<h2>Tilføj en ny underkategori</h2>
+			<h2 id="modal-label">Tilføj en ny underkategori</h2>
 			<p>Vælg hovedkategori og skriv hvad underkategorien skal hedde</p>
 			<select name="category">
 				<option value="">---</option>
@@ -106,18 +106,27 @@
 	</div>
 </div>
 
-<div class="modal edit-category" id="editcategory">
+<div class="modal edit-category" id="editcategory" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
 	<div>
 		<a href="#close" title="Close" class="close-dialog">Luk</a>
 		<form action="/admin/editcategory" method="post">
-			<h2>Rediger en kategori</h2>
-			<p>Vælg kategorien og giv den et nyt navn</p>
-			<select name="category">
+			<h2 id="modal-label">Rediger en kategori</h2>
+			<p>Vælg kategorien og giv den et nyt navn.<br/> Eller slet den (kan ikke fortrydes!)</p>
+			<div class="radio-group">
+				{{#each categories}}
+					<label>
+						<input type="radio" name="category" value="{{id}}"/>
+						<span>{{name}}</span>
+					</label>
+					<a href="/admin/deletecategory/{{id}}">slet</a>
+				{{/each}}
+			</div>
+			<!--<select name="category">
 				<option value="">---</option>
 				{{#each categories}}
 					<option value="{{id}}">{{name}}</option>
 				{{/each}}
-			</select>
+			</select>-->
 			<label>
 				<span>Navn på kategori</span>
 				<input type="text" name="newcategory"/>
@@ -127,13 +136,27 @@
 	</div>
 </div>
 
-<div class="modal edit-subcategory" id="editsubcategory">
+<div class="modal edit-subcategory" id="editsubcategory" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
 	<div>
 		<a href="#close" title="Close" class="close-dialog">Luk</a>
 		<form action="/admin/editsubcategory" method="post">
-			<h2>Rediger en underkategori</h2>
-			<p>Vælg underkategorien og giv den et nyt navn</p>
-			<select name="subcategory">
+			<h2 id="modal-label">Rediger en underkategori</h2>
+			<p>Vælg underkategorien og giv den et nyt navn.<br/> Eller slet den (kan ikke fortrydes!)</p>
+			<div class="radio-group">
+				{{#each categories}}
+					<span>{{name}}</span>
+					{{#if subcategory}}
+						{{#subcategory}}
+							<label>
+								<input type="radio" name="subcategory" value="{{../../id}}-{{id}}"/>
+								<span>{{name}}</span>
+							</label>
+							<a href="/admin/deletesubcategory/{{id}}">slet</a>
+						{{/subcategory}}
+					{{/if}}
+				{{/each}}
+			</div>
+			<!--<select name="subcategory">
 				<option value="">---</option>
 				{{#each categories}}
 				<optgroup label="{{name}}">
@@ -141,11 +164,10 @@
 						{{#subcategory}}
 						<option value="{{../../id}}-{{id}}">{{name}}</option>
 						{{/subcategory}}
-						</ul>
 					{{/if}}
 				</optgroup>
 				{{/each}}
-			</select>
+			</select>-->
 			<label>
 				<span>Navn på underkategori</span>
 				<input type="text" name="newsubcategory"/>

@@ -28,39 +28,9 @@
             },
             {
                 "id": 3,
-                "name": "dark"
-            },
-            {
-                "id": "a8kusq",
-                "name": "light"
+                "name": "Grafitti"
             }
         ],
         "active": true
-    },
-    {
-        "id": 2,
-        "name": "tegninger",
-        "subcategory": [
-            {
-                "id": 4,
-                "name": "tusch"
-            },
-            {
-                "id": 5,
-                "name": "blyant"
-            }
-        ],
-        "active": true
-    },
-    {
-        "id": "0n49mj",
-        "name": "geder",
-        "active": true,
-        "subcategory": [
-            {
-                "id": "4017sk",
-                "name": "korte"
-            }
-        ]
     }
 ]

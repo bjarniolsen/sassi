@@ -363,6 +363,43 @@ exports.editCategory = function(req, res) {
 	});
 }
 
+exports.deleteCategory = function(id) {
+    for ( var i=0; i < categories.length; i++ ) {
+    	if (categories[i].id == id) {
+            categories.splice(i, 1);
+    	}
+    }
+    // Append new json to categories object
+	fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("yay");
+		}
+	});
+}
+
+exports.deleteSubCategory = function(id) {
+    for ( var i=0; i < categories.length; i++ ) {
+    	if (categories[i].subcategory) {
+    		var subcategories = categories[i].subcategory;
+    		for ( var j=0; j < subcategories.length; j++ ) {
+        		if (subcategories[j].id == id) {
+            		subcategories.splice(j, 1);
+        		}
+        	}
+        }
+    }
+    // Append new json to categories object
+	fs.writeFile(categoriesFile, JSON.stringify(categories, null, 4), function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("yay");
+		}
+	});
+}
+
 exports.addSubCategory = function(req, res) {
 	var newSubCatId = Math.random().toString(36).substr(2,6);
 	var newJson =  {

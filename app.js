@@ -14,6 +14,7 @@ app.use(express.cookieParser());
 app.use(express.session({secret: '1234567890QWERTY', cookie:{maxAge:3600000}}));
 
 hbs.registerPartials(__dirname + '/views/partials');
+console.log(__dirname);
 
 app.get('/login', function (req, res) {
     res.render("login");
@@ -83,6 +84,17 @@ app.post("/admin/editcategory", function(req, res) {
 
 app.post("/admin/editsubcategory", function(req, res) {
     var result = imageEngine.editSubCategory(req, res);
+	res.redirect("/admin");
+});
+
+app.get("/admin/deletecategory/:id", function(req, res) {
+    console.log(req.params.id);
+    var result = imageEngine.deleteCategory(req.params.id);
+	res.redirect("/admin");
+});
+
+app.get("/admin/deletesubcategory/:id", function(req, res) {
+    var result = imageEngine.deleteSubCategory(req.params.id);
 	res.redirect("/admin");
 });
 
