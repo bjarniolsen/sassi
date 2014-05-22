@@ -1,20 +1,26 @@
 {
-  "name": "sassi",
-  "description": "sassis website",
-  "version": "0.1.1",
+  "name": "Sassi",
+  "version": "0.1.0",
+  "description": "Sassi gallery",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gallery"
+  ],
   "author": "Bjarni Olsen",
-  "private": "true",
+  "license": "ISC",
   "dependencies": {
-    "express": "3.x",
-    "imagemagick": "0.1.x",
-    "ncp": "0.5.x",
-    "hbs": "*"
+    "express": "~3.8.0",
+    "imagemagick": "~0.1.3",
+    "ncp": "~0.5.1",
+    "hbs": "~2.6.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-contrib-jshint": "~0.6.3",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-uglify": "~0.2.2",
+    "grunt": "~0.4.5",
+    "grunt-contrib-nodeunit": "~0.4.0",
+    "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.6.1",
     "load-grunt-tasks": "~0.4.0"
   },

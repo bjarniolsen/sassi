@@ -8,7 +8,9 @@ var helpers = require("./helpers");
 app.set("view engine", "html");
 app.set('views', __dirname + '/views');
 app.engine("html", hbs.__express);
-app.use(express.bodyParser());
+//app.use(express.bodyParser());
+app.use(express.json());
+app.use(express.urlencoded());
 //app.use(express.static("assets"));
 app.use(express.static(__dirname + '/assets'));
 
