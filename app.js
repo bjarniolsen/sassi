@@ -8,13 +8,13 @@ var helpers = require("./helpers");
 app.set("view engine", "html");
 app.engine("html", hbs.__express);
 app.use(express.bodyParser());
-app.use(express.static("assets"));
+//app.use(express.static("assets"));
+app.use(express.static(__dirname + '/assets'));
 
 app.use(express.cookieParser());
 app.use(express.session({secret: '1234567890QWERTY', cookie:{maxAge:3600000}}));
 
 hbs.registerPartials(__dirname + '/views/partials');
-console.log(__dirname);
 
 app.get('/login', function (req, res) {
     res.render("login");
