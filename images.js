@@ -110,6 +110,7 @@ exports.addImage = function(req, res) {
 }
 
 exports.addImages = function(req, res) {
+	console.log(req.files);
 	if(req.files.images.length) {
 
 		var newId = Math.random().toString(36).substr(2,6);
