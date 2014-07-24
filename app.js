@@ -1,29 +1,46 @@
-var express = require("express");
-var fs = require('fs');
-var app = express();
+// BASE SETUP
+// =============================================================================
+
+// call the packages we need
+var express    = require('express'); // call express
+var app        = express(); // define our app using express
+var bodyParser = require('body-parser');
+var multer  = require('multer');
+//var fs = require('fs');
 var hbs = require("hbs");
 var imageEngine = require("./images");
 var helpers = require("./helpers");
+var session = require('express-session');
 
+app.use(session({secret: '1234567890QWERTY', cookie:{maxAge:3600000}}));
 app.set("view engine", "html");
 app.set('views', __dirname + '/views');
 app.engine("html", hbs.__express);
-//app.use(express.bodyParser());
-app.use(express.json());
-app.use(express.urlencoded());
-//app.use(express.static("assets"));
-app.use(express.static(__dirname + '/assets'));
-
-app.use(express.cookieParser());
-app.use(express.session({secret: '1234567890QWERTY', cookie:{maxAge:3600000}}));
-
 hbs.registerPartials(__dirname + '/views/partials');
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser());
+app.use(express.static(__dirname + '/assets'));
+app.use(multer({ dest: 'assets/tmp/'}));
 
-app.get('/login', function (req, res) {
+var port = process.env.PORT || 30052; // set our port
+
+// ROUTES FOR OUR API
+// =============================================================================
+var router = express.Router(); // get an instance of the express Router
+
+// middleware to use for all requests
+router.use(function(req, res, next) {
+	// do logging
+	console.log('Something is happening.');
+	next(); // make sure we go to the next routes and don't stop here
+});
+
+router.get('/login', function (req, res) {
     res.render("login");
 });
 
-app.post("/login", function (req, res) {
+router.post("/login", function (req, res) {
 	var post = req.body;
 	if ( (post.user == "bjarni" && post.password == "ttboy666") || (post.user == "sassibis" && post.password == "0707mathilde") ) {
 		req.session.user_id = 666;
@@ -33,12 +50,12 @@ app.post("/login", function (req, res) {
 	}
 });
 
-app.get('/logout', function (req, res) {
+router.get('/logout', function (req, res) {
 	delete req.session.user_id;
 	res.redirect('/login');
 });
 
-app.get("/", function(req, res) {
+router.get("/", function(req, res) {
     var categories = imageEngine.getCategories();
     var result = imageEngine.getFeaturedImages();
     res.render("index", {
@@ -49,7 +66,7 @@ app.get("/", function(req, res) {
     });
 });
 
-app.get("/admin", helpers.checkAuth, function(req, res) {
+router.get("/admin", helpers.checkAuth, function(req, res) {
     var result = imageEngine.getAllImages();
     var categories = imageEngine.getCategories();
     res.render("admin/index", {
@@ -60,78 +77,78 @@ app.get("/admin", helpers.checkAuth, function(req, res) {
     });
 });
 
-app.post("/admin/upload", function(req, res) {
+router.post("/admin/upload", function(req, res) {
     var result = imageEngine.addImage(req, res);
 	res.redirect("/admin");
 });
 
-app.post("/admin/uploads", function(req, res) {
+router.post("/admin/uploads", function(req, res) {
     var result = imageEngine.addImages(req, res);
 	res.redirect("/admin");
 });
 
-app.post("/admin/addcategory", function(req, res) {
+router.post("/admin/addcategory", function(req, res) {
     var result = imageEngine.addCategory(req, res);
 	res.redirect("/admin");
 });
 
-app.post("/admin/addsubcategory", function(req, res) {
+router.post("/admin/addsubcategory", function(req, res) {
     var result = imageEngine.addSubCategory(req, res);
 	res.redirect("/admin");
 });
 
-app.post("/admin/editcategory", function(req, res) {
+router.post("/admin/editcategory", function(req, res) {
     var result = imageEngine.editCategory(req, res);
 	res.redirect("/admin");
 });
 
-app.post("/admin/editsubcategory", function(req, res) {
+router.post("/admin/editsubcategory", function(req, res) {
     var result = imageEngine.editSubCategory(req, res);
 	res.redirect("/admin");
 });
 
-app.get("/admin/deletecategory/:id", function(req, res) {
+router.get("/admin/deletecategory/:id", function(req, res) {
     console.log(req.params.id);
     var result = imageEngine.deleteCategory(req.params.id);
 	res.redirect("/admin");
 });
 
-app.get("/admin/deletesubcategory/:id", function(req, res) {
+router.get("/admin/deletesubcategory/:id", function(req, res) {
     var result = imageEngine.deleteSubCategory(req.params.id);
 	res.redirect("/admin");
 });
 
-app.get("/admin/mute/:id", function(req, res) {
+router.get("/admin/mute/:id", function(req, res) {
 	var result = imageEngine.muteImage(req.params.id);
 	res.redirect("/admin");
 });
 
-app.get("/admin/unmute/:id", function(req, res) {
+router.get("/admin/unmute/:id", function(req, res) {
 	var result = imageEngine.unmuteImage(req.params.id);
 	res.redirect("/admin");
 });
 
-app.get("/admin/feature/:id", function(req, res) {
+router.get("/admin/feature/:id", function(req, res) {
 	var result = imageEngine.featureImage(req.params.id);
 	res.redirect("/admin");
 });
 
-app.get("/admin/unfeature/:id", function(req, res) {
+router.get("/admin/unfeature/:id", function(req, res) {
 	var result = imageEngine.unfeatureImage(req.params.id);
 	res.redirect("/admin");
 });
 
-app.get("/admin/delete/:id", function(req, res) {
+router.get("/admin/delete/:id", function(req, res) {
 	var result = imageEngine.deleteImage(req.params.id);
 	res.redirect("/admin");
 });
 
-app.post("/admin/edit/:id", function(req, res) {
+router.post("/admin/edit/:id", function(req, res) {
 	var result = imageEngine.editImage(req, res, req.params.id);
 	res.redirect("/admin");
 });
 
-app.get("/admin/image/:id", helpers.checkAuth, function(req, res) {
+router.get("/admin/image/:id", helpers.checkAuth, function(req, res) {
     var image = imageEngine.getImage(req.params.id);
     var imageCategoryNames = imageEngine.getCategoryNameByImageId(req.params.id);
     var categories = imageEngine.getCategories();
@@ -144,7 +161,7 @@ app.get("/admin/image/:id", helpers.checkAuth, function(req, res) {
     });
 });
 
-app.get("/admin/:cat/:subcat", helpers.checkAuth, function(req, res) {
+router.get("/admin/:cat/:subcat", helpers.checkAuth, function(req, res) {
     var result = imageEngine.getImagesByCategory(req.params.cat, req.params.subcat);
     var subCatName = imageEngine.getSubCategoryName(req.params.cat, req.params.subcat);
 	var categories = imageEngine.getCategories();
@@ -158,7 +175,7 @@ app.get("/admin/:cat/:subcat", helpers.checkAuth, function(req, res) {
     });
 });
 
-app.get("/image/:id", function(req, res) {
+router.get("/image/:id", function(req, res) {
     var image = imageEngine.getImage(req.params.id);
     var categories = imageEngine.getCategories();
     res.render("image", {
@@ -169,27 +186,27 @@ app.get("/image/:id", function(req, res) {
 });
 
 // API
-app.get("/api/get_all_images", function(req, res) {
+router.get("/api/get_all_images", function(req, res) {
     var images = imageEngine.getAllImages();
     res.send(images);
 });
 
-app.get("/api/get_image/:id", function(req, res) {
+router.get("/api/get_image/:id", function(req, res) {
     var image = imageEngine.getImage(req.params.id);
     res.send(image);
 });
 
-app.get("/api/get_images_by_category/:cat", function(req, res) {
+router.get("/api/get_images_by_category/:cat", function(req, res) {
     var images = imageEngine.getImagesByCategory(req.params.cat);
     res.send(images);
 });
 
-app.get("/api/get_categories", function(req, res) {
+router.get("/api/get_categories", function(req, res) {
     var categories = imageEngine.getCategories();
     res.send(categories);
 });
 
-app.get("/api/:id", function(req, res) {
+router.get("/api/:id", function(req, res) {
     res.send({
         name: "Bjarni Olsen",
         age: 200,
@@ -197,7 +214,7 @@ app.get("/api/:id", function(req, res) {
     });
 });
 
-app.get("/kontakt", function(req, res) {
+router.get("/kontakt", function(req, res) {
 	var categories = imageEngine.getCategories();
 	res.render("kontakt", {
 		title: "Kontakt",
@@ -206,7 +223,7 @@ app.get("/kontakt", function(req, res) {
 	});
 });
 
-app.get("/cv", function(req, res) {
+router.get("/cv", function(req, res) {
 	var categories = imageEngine.getCategories();
 	res.render("cv", {
 		title: "cv",
@@ -215,7 +232,7 @@ app.get("/cv", function(req, res) {
 	});
 });
 
-app.get("/:cat", function(req, res) {
+router.get("/:cat", function(req, res) {
 	var categories = imageEngine.getCategories();
     res.render("category", {
         currentCategory: req.params.cat,
@@ -223,7 +240,7 @@ app.get("/:cat", function(req, res) {
     });
 });
 
-app.get("/:cat/:subcat", function(req, res) {
+router.get("/:cat/:subcat", function(req, res) {
     var result = imageEngine.getImagesByCategory(req.params.cat, req.params.subcat);
     var subCatName = imageEngine.getSubCategoryName(req.params.cat, req.params.subcat);
 	var categories = imageEngine.getCategories();
@@ -237,4 +254,8 @@ app.get("/:cat/:subcat", function(req, res) {
     });
 });
 
-app.listen(30052);
+// REGISTER OUR ROUTES -------------------------------
+// all of our routes will be prefixed with /
+app.use('/', router);
+
+app.listen(port);

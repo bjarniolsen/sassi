@@ -4,16 +4,12 @@
         "name": "malerier",
         "subcategory": [
             {
-                "id": 0,
-                "name": "Kulturnat Ålborg 2005"
+                "id": "8qf2oi",
+                "name": "Dyr"
             },
             {
-                "id": 1,
-                "name": "Stark byggemarked 2007"
-            },
-            {
-                "id": "6p786h",
-                "name": "Udstilling 2010"
+                "id": "0jxaak",
+                "name": "Bobler"
             }
         ],
         "active": true

@@ -19,11 +19,51 @@ var S = (function(doc, win, $, _) {
 			});
 		});
 
-		$(".hest").on("click", function(e) {
-			doc.trigger("hest");
+		$(".nav-toggle").on("click", function(toggle) {
+			toggle.preventDefault();
+			_.navToggle(toggle);
 		});
 
-		_.modalCircleFocus();
+		$(".image-wrap").on("click", function(image) {
+			image.preventDefault();
+			_.imageHandler(image);
+		});
+
+		$("body > .admin").length > 0 ? _.modalCircleFocus() : null; 
+
+		_.initModal();
+	}
+
+	_.navToggle = function(toggle) {
+		$("#nav").classList.toggle("is-active");
+		//navigation.classList.remove("is-active");
+		//navigation.classList.add("is-active", "hest");
+		//navigation.classList.contains("is-active");
+	}
+
+	_.imageHandler = function(image) {
+		var newSrc = image.target.src.replace("thumb/", "", "gi");
+		var title = document.createTextNode(image.target.getAttribute("alt"));
+		var img = new Image();
+		img.onload = function() {
+			console.log(this.width, this.height);
+		};
+		img.src = newSrc;
+		_.modal.find(".image-wrap").appendChild(img);
+		_.modal.find(".title").appendChild(title);
+		_.modal.classList.add("is-active");
+	}
+
+	_.initModal = function() {
+		_.modal = document.createElement("div");
+		_.modal.classList.add("modal");
+		_.modal.innerHTML = "<div><button type=\"button\">luk</button><div class=\"image-wrap\"></div><p class=\"title\"></p></div>";
+		document.body.appendChild(_.modal);
+		_.modal.find("button").on("click", function() {
+			_.modal.classList.remove("is-active");
+			var img = _.modal.find("img");
+			img.parentNode.removeChild(img);
+		});
 	}
 
 	_.modalCircleFocus = function() {

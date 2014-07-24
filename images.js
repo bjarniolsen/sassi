@@ -25,7 +25,6 @@ fs.readFile(categoriesFile, 'utf8', function (err, data) {
   
 exports.addImage = function(req, res) {
 	var newId = Math.random().toString(36).substr(2,6);
-	//var newId = (images.length > 0) ? (images[images.length-1].id + 1) : 0;
 	var catId = req.body.category.split("-")[0]; 
 	var subCatId = req.body.category.split("-")[1]; 
 	var newJson =  {
@@ -110,15 +109,13 @@ exports.addImage = function(req, res) {
 }
 
 exports.addImages = function(req, res) {
-	console.log(req.files);
 	if(req.files.images.length) {
 
-		var newId = Math.random().toString(36).substr(2,6);
+		//var newId = Math.random().toString(36).substr(2,6);
 		var catId = req.body.category.split("-")[0]; 
 		var subCatId = req.body.category.split("-")[1]; 
 
     	for(var image in req.files.images) {
-			//console.log(req.files.images[image].path);
 			if (req.files.images.hasOwnProperty(image)) {
 				//.match(/\.(jpg|jpeg|png)$/i)
 				var extension = req.files.images[image].name.split('.').pop();
@@ -138,8 +135,6 @@ exports.addImages = function(req, res) {
 				var thumb_large = __dirname + '/assets/images/thumb/large/' + newName;
 				var thumb_medium = __dirname + '/assets/images/thumb/medium/' + newName;
 
-				//console.log(tmp_path, target_path, thumb_large, thumb_medium);
-
 				// move the file from the temporary location to the intended location
 				upload(tmp_path, target_path, image_large, thumb_large, thumb_medium);
     			// Append new json to images object
@@ -152,7 +147,7 @@ exports.addImages = function(req, res) {
     				}
     			});
     		}
-			newId++;
+			//newId++;
     	}
 
     	function upload(tmp, target, image_l, thumb_l, thumb_m) {
@@ -220,8 +215,10 @@ exports.addImages = function(req, res) {
 exports.editImage = function(req, res, id) {
     for(var i=0; i < images.length; i++) {
         if(images[i].id == id) {
-			var catId = req.body.category.split("-")[0]; 
-			var subCatId = req.body.category.split("-")[1]; 
+			if(req.body.category) {
+				var catId = req.body.category.split("-")[0]; 
+				var subCatId = req.body.category.split("-")[1]; 
+			}
 			var newJson =  {
 					"id": images[i].id,
 					"catId": catId ? catId : images[i].catId,

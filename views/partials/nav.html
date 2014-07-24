@@ -1,14 +1,14 @@
 {{#if nav}}
-	<a href="#nav" class="toggle-nav">x</a>
-	<ul id="nav" class="active">
+	<a href="#nav" class="nav-toggle">x</a>
+	<ul id="nav" class="is-active">
 	{{#nav}}
-		<li {{#equal ../currentCategory name }} class="active" {{/equal}}>
+		<li {{#equal ../currentCategory name }} class="is-active" {{/equal}}>
 			<!--<a href="/{{name}}">{{name}}</a>-->
 			<span>{{name}}</span>
 			{{#if subcategory}}
 				<ul>
 				{{#subcategory}}
-					<li {{#equal ../../../currentSubCategoryId id }} class="active" {{/equal}}>
+					<li {{#equal ../../../currentSubCategoryId id }} class="is-active" {{/equal}}>
 						<a href="/{{../name}}/{{id}}">{{name}}</a>
 					</li>
 				{{/subcategory}}
@@ -16,10 +16,10 @@
 			{{/if}}
 		</li>
 	{{/nav}}
-		<li {{#equal ../currentCategory "cv" }} class="active" {{/equal}}>
+		<li {{#equal ../currentCategory "cv" }} class="is-active" {{/equal}}>
 			<a href="/cv">CV</a>
 		</li>
-		<li {{#equal ../currentCategory "kontakt" }} class="active" {{/equal}}>
+		<li {{#equal ../currentCategory "kontakt" }} class="is-active" {{/equal}}>
 			<a href="/kontakt">Kontakt</a>
 		</li>
 	</ul>
