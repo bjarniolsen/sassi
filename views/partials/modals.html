@@ -176,3 +176,22 @@
 		</form>
 	</div>
 </div>
+
+<div class="modal edit-news" id="editnews" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+	<div>
+		<a href="#close" title="Close" class="close-dialog">Luk</a>
+		<form action="/admin/news" method="post">
+			<h2>Tekst til forsiden</h2>
+			<label>
+				<span>Skriv til forsiden her</span>
+				<textarea name="content" class="news">
+				{{#each news}}
+					{{content}}
+				{{/each}}
+				</textarea>
+			</label>
+			<button type="submit">Gem</button>
+			<p>Markdown forklaring her...</p>
+		</form>
+	</div>
+</div>

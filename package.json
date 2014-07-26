@@ -18,7 +18,8 @@
     "hbs": "~2.6.0",
     "body-parser": "~1.0.1",
     "multer": "~0.1.2",
-    "express-session": "~1.6.5"
+    "express-session": "~1.6.5",
+    "pagedown": "~1.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

@@ -352,6 +352,11 @@ form > label input[type="file"] {
 form label textarea,
 form > label textarea {
 	height: 158px;
+	white-space: normal;
+}
+form label textarea.news,
+form > label textarea.news {
+	height: 400px;
 }
 form label select,
 form > label select {
@@ -953,6 +958,7 @@ form > button {
 .admin .toolbar .sort > li li a:hover {
 	color: #fff;
 }
+.admin #editnews:target,
 .admin #addimage:target,
 .admin #addimages:target,
 .admin #addsubcategory:target,

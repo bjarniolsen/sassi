@@ -6,9 +6,9 @@ var express    = require('express'); // call express
 var app        = express(); // define our app using express
 var bodyParser = require('body-parser');
 var multer  = require('multer');
-//var fs = require('fs');
 var hbs = require("hbs");
 var imageEngine = require("./images");
+var newsEngine = require("./news");
 var helpers = require("./helpers");
 var session = require('express-session');
 
@@ -58,8 +58,10 @@ router.get('/logout', function (req, res) {
 router.get("/", function(req, res) {
     var categories = imageEngine.getCategories();
     var result = imageEngine.getFeaturedImages();
+    var news = newsEngine.getLatestNewsConverted();
     res.render("index", {
         title: "Sassi", 
+        news: news,
         images: result,
         spansize: helpers.spansize(result.length),
         nav: categories
@@ -69,9 +71,11 @@ router.get("/", function(req, res) {
 router.get("/admin", helpers.checkAuth, function(req, res) {
     var result = imageEngine.getAllImages();
     var categories = imageEngine.getCategories();
+    var news = newsEngine.getLatestNewsRaw();
     res.render("admin/index", {
     	images: result,
     	categories: categories,
+        news: news,
         spansize: helpers.spansize(result.length),
         layout: 'layout/admin'
     });
@@ -108,7 +112,6 @@ router.post("/admin/editsubcategory", function(req, res) {
 });
 
 router.get("/admin/deletecategory/:id", function(req, res) {
-    console.log(req.params.id);
     var result = imageEngine.deleteCategory(req.params.id);
 	res.redirect("/admin");
 });
@@ -173,6 +176,11 @@ router.get("/admin/:cat/:subcat", helpers.checkAuth, function(req, res) {
         spansize: helpers.spansize(result.length),
         layout: 'layout/admin'
     });
+});
+
+router.post("/admin/news", function(req, res) {
+    var result = newsEngine.updateNews(req, res);
+	res.redirect("/admin");
 });
 
 router.get("/image/:id", function(req, res) {
